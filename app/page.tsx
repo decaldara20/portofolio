@@ -601,38 +601,11 @@ export default function Home() {
               </h3>
               <div className="text-foreground/75 leading-relaxed text-sm sm:text-base space-y-4">
                 <p>
-                  Sebagai seorang pemimpin dan pembelajar, saya menganut prinsip
-                  bahwa kepemimpinan yang efektif lahir dari keberanian dan
-                  kemampuan beradaptasi. Saya adalah orang yang tidak takut
-                  mengambil keputusan strategis, bahkan di tengah situasi yang
-                  penuh ketidakpastian, karena saya percaya bahwa momentum
-                  perubahan membutuhkan arah yang jelas. Keberanian ini
-                  diimbangi dengan sifat adaptif, yang membuat saya mampu
-                  merespons dinamika organisasi maupun perkembangan teknologi
-                  mutakhir dengan cepat dan fleksibel.
-                </p>
-                <p>
-                  Dalam mengeksekusi setiap keputusan, saya selalu mengedepankan
-                  pendekatan yang terstruktur. Saya memiliki kapasitas untuk
-                  mengorganisir sesuatu dengan baik, mulai dari manajemen tim,
-                  penyusunan skala prioritas, hingga pengelolaan sumber daya
-                  agar berjalan secara efisien dan selaras dengan visi bersama.
-                  Namun, bagi saya, sebuah sistem yang teratur tidak akan
-                  berjalan optimal tanpa adanya sentuhan kemanusiaan. Oleh
-                  karena itu, saya selalu menempatkan rasa empati sebagai
-                  fondasi utama dalam berinteraksi, mendengarkan kebutuhan
-                  anggota tim, serta memahami perspektif para pemangku
-                  kepentingan.
-                </p>
-                <p>
-                  Pada akhirnya, muara dari seluruh proses organisasi dan
-                  analisis yang saya lakukan adalah menjadi pribadi yang
-                  solutif. Saya tidak hanya berfokus pada identifikasi masalah,
-                  melainkan berkomitmen untuk menghadirkan jalan keluar yang
-                  nyata, inovatif, dan berbasis data. Kombinasi antara
-                  ketegasan, keteraturan, empati, dan orientasi pada solusi
-                  inilah yang membentuk kompas profesional saya dalam membawa
-                  dampak positif bagi lingkungan sekitar.
+                  Sebagai seorang pemimpin yang adaptif dan berani mengambil keputusan strategis di tengah ketidakpastian,
+                  saya memadukan pendekatan terstruktur dengan empati mendalam untuk membawa dampak positif.
+                  Lewat manajemen tim yang terorganisir dan pengelolaan sumber daya yang efisien,
+                  saya menyelaraskan setiap langkah dengan visi bersama sembari tetap memahami perspektif para pemangku kepentingan.
+                  Berorientasi penuh pada hasil, kompas profesional saya berfokus pada penghasihan solusi nyata, inovatif, dan berbasis data untuk setiap dinamika organisasi.
                 </p>
               </div>
             </div>
