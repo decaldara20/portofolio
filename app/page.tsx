@@ -197,6 +197,14 @@ export default function Home() {
           {/* Menu Desktop (Tampil di layar >= 768px) */}
           <ul className="hidden md:flex items-center gap-6 text-sm font-medium text-foreground/75">
             <li>
+              <a //tambahkan animasi pesan diunduh disamping tombol ini
+                href="/ngl"
+                className="hover:text-accent transition-colors whitespace-nowrap"
+              >
+                Kirim Pesan
+              </a>
+            </li>
+            <li>
               <a
                 href="#projects"
                 className="hover:text-accent transition-colors whitespace-nowrap"
@@ -285,6 +293,13 @@ export default function Home() {
             >
               Hubungi Saya
             </a>
+            <a
+              href="/ngl"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="block w-full text-center bg-primary hover:bg-accent text-background hover:text-primary px-4 py-2.5 rounded-xl text-sm font-semibold transition-all shadow-sm mt-2"
+            >
+              Kirim Pesan
+            </a>
           </div>
         )}
       </nav>
@@ -299,7 +314,7 @@ export default function Home() {
           {/* Kolom Kiri: Teks Utama */}
           <div className="lg:col-span-7 text-left">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent/10 border border-accent/30 text-primary text-[11px] sm:text-xs font-semibold mb-5 max-w-full">
-              <span className="w-2 h-2 rounded-full bg-accent animate-pulse shrink-0" />
+              <span className="w-2 h-2 rounded-full bg-primary animate-pulse shrink-0" />
               <span className="truncate">{PROFILE.status}</span>
             </div>
 
