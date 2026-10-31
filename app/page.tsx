@@ -28,6 +28,7 @@ const PROFILE = {
   status: "Deep learning into Data Science & Student Leadership.",
   bioSingkat:
     "Saya adalah seorang mahasiswa Data Science di Universitas Sebelas Maret yang memiliki minat mendalam pada integrasi pengembangan perangkat lunak, analitik data, dan kepemimpinan organisasi. Sebagai Presiden BEM FATISDA UNS 2026, saya mengasah kemampuan manajemen tim, perencanaan strategis, dan pengambilan keputusan berbasis data (data-driven decision making)",
+  instagramUrl: "https://www.instagram.com/kunto_rossindu?rpxt=MWgzYnc3bDV1OWJx",
   githubUrl: "https://github.com/decaldara20/",
   linkedinUrl: "https://linkedin.com/in/kuntohidayat",
   email: "kuntohidayat20@gmail.com",
@@ -671,12 +672,20 @@ export default function Home() {
 
           <div className="flex items-center gap-5 text-sm font-medium">
             <a
+              href={PROFILE.instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-background/80 hover:text-accent transition-colors"
+            >
+              <img src="/ig.png" alt="Instagram" className="w-5 h-5" />
+            </a>
+            <a
               href={PROFILE.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="text-background/80 hover:text-accent transition-colors"
             >
-              GitHub
+              <img src="/github.png" alt="GitHub" className="w-5 h-5" />
             </a>
             <a
               href={PROFILE.linkedinUrl}
@@ -684,13 +693,13 @@ export default function Home() {
               rel="noopener noreferrer"
               className="text-background/80 hover:text-accent transition-colors"
             >
-              LinkedIn
+              <img src="/linkedin.png" alt="LinkedIn" className="w-5 h-5" />
             </a>
             <a
               href={`mailto:${PROFILE.email}`}
               className="text-background/80 hover:text-accent transition-colors"
             >
-              Email
+              <img src="/email.png" alt="Email" className="w-5 h-5" />
             </a>
           </div>
         </div>
