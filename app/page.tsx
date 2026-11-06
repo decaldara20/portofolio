@@ -29,6 +29,7 @@ interface dokumentasi {
   id: number;
   deskripsi: string;
   gambar: string;
+  year?: number;
 }
 
 // ==========================================
@@ -73,53 +74,69 @@ const education: education[] = [
 const dokumentasi: dokumentasi[] = [
   {
     id: 1,
-    deskripsi: "Presiden BEM FATISDA UNS 2026.",
-    gambar: "/b.jpeg"
+    deskripsi: "Presiden BEM FATISDA UNS",
+    gambar: "/b.jpeg",
+    year: 2026
   },
   {
     id: 2,
-    deskripsi: "PINGFEST 2026",
-    gambar: "/pingfest2026.jpg"
+    deskripsi: "PINGFEST",
+    gambar: "/pingfest2026.jpg",
+    year: 2026
   },
   {
     id: 3,
     deskripsi: "Fatisda Student Developer",
-    gambar: "/fsd.jpeg"
+    gambar: "/fsd.jpeg",
+    year: 2026
   },
   {
     id: 4,
-    deskripsi: "PKKMB FATISDA UNS 2026",
-    gambar: "/pkkmb.jpeg"
+    deskripsi: "PKKMB FATISDA UNS",
+    gambar: "/pkkmb.jpeg",
+    year: 2026
   },
   {
     id: 5,
-    deskripsi: "Menteri Bisnis dan Kemitraan BEM FATISDA UNS 2025",
-    gambar: "/bem-2025.jpg"
+    deskripsi: "Menteri Bisnis dan Kemitraan BEM FATISDA UNS",
+    gambar: "/bem-2025.jpg",
+    year: 2025
   },
   {
     id: 6,
-    deskripsi: "PINGFEST 2025",
-    gambar: "/pingfest25.jpg"
+    deskripsi: "PINGFEST",
+    gambar: "/pingfest25.jpg",
+    year: 2025
   },
   {
     id: 7,
-    deskripsi: "Kunjungan Internal BEM FATISDA x BEM SV 2026",
-    gambar: "/bemsv.JPG"
+    deskripsi: "Kunjungan Internal BEM FATISDA x BEM SV",
+    gambar: "/bemsv.JPG",
+    year: 2026
   },
   {
     id: 8,
-    deskripsi: "Kunjungan Eksternal BEM FATISDA x HIMAKOM UGM 2026",
-    gambar: "/kunex.JPG"
+    deskripsi: "Kunjungan Eksternal BEM FATISDA x HIMAKOM UGM",
+    gambar: "/kunex.JPG",
+    year: 2026
   },
   {
     id: 9,
-    deskripsi: "Gardapada BEM FATISDA UNS 2026",
-    gambar: "/gardapada.JPG"
+    deskripsi: "Gardapada BEM FATISDA UNS",
+    gambar: "/gardapada.JPG",
+    year: 2026
   },
   {
     id: 10,
-    deskripsi: "Rapat Kerja BEM FATISDA UNS 2026",
-    gambar: "/raker.JPG"
+    deskripsi: "Rapat Kerja BEM FATISDA UNS",
+    gambar: "/raker.JPG",
+    year: 2026
+  },
+  {
+    id: 11,
+    deskripsi: "Buka Bersama BEM FATISDA UNS",
+    gambar: "/bukber.JPG",
+    year: 2026
   }
 ];
 
@@ -516,40 +533,98 @@ export default function Home() {
         </div>
       </section>
 
-      {/* dokumentasi */}
-      <section className="relative z-10 py-14 sm:py-20 bg-primary border-t border-primary/10 overflow-hidden">
-        {/* Efek Blur Transparan di Ujung Kiri dan Kanan */}
-        <div className="relative w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]">
+      {/* Dokumentasi Section */}
+      <section className="relative z-10 py-14 sm:py-20 bg-primary border-t border-white/10 overflow-hidden">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
           
-          {/* Kontainer Utama Wrapper */}
-          <div className="flex w-max">
-            {/* Baris Animasi Marquee Bergerak ke Kanan */}
-            <div className="flex gap-5 animate-marquee-right whitespace-nowrap px-2 py-2">
-              {/* Duplikasi data 3x agar looping mulus tanpa putus di layar lebar */}
-              {[...dokumentasi, ...dokumentasi, ...dokumentasi].map((item, index) => (
+          {/* Header & Navigasi Tombol Geser */}
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 sm:mb-10 gap-4">
+            <div>
+              <span className="text-xs font-bold uppercase tracking-wider text-accent bg-accent/10 border border-accent/30 px-3 py-1 rounded-full">
+                Dokumentasi
+              </span>
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-background mt-3">
+                Gallery
+              </h2>
+            </div>
+
+            {/* Tombol Navigasi Kiri & Kanan (Desktop & Tablet) */}
+            <div className="hidden sm:flex items-center gap-2.5">
+              <button
+                type="button"
+                onClick={() => {
+                  const el = document.getElementById("doc-slider");
+                  el?.scrollBy({ left: -340, behavior: "smooth" });
+                }}
+                aria-label="Geser ke kiri"
+                className="p-2.5 rounded-xl bg-white/5 hover:bg-accent text-background hover:text-primary border border-white/15 hover:border-accent transition-all duration-300 cursor-pointer active:scale-90"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  const el = document.getElementById("doc-slider");
+                  el?.scrollBy({ left: 340, behavior: "smooth" });
+                }}
+                aria-label="Geser ke kanan"
+                className="p-2.5 rounded-xl bg-white/5 hover:bg-accent text-background hover:text-primary border border-white/15 hover:border-accent transition-all duration-300 cursor-pointer active:scale-90"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          {/* Area Slider dengan Efek Blur Fade di Ujung */}
+          <div className="relative -mx-4 px-4 sm:mx-0 sm:px-0">
+            <div
+              id="doc-slider"
+              className="flex gap-5 sm:gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth py-4 px-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+            >
+              {dokumentasi.map((item, index) => (
                 <div
                   key={index}
-                  className="w-[180px] sm:w-[320px] rounded-2xl bg-accent border border-primary/10 shadow-md hover:border-accent hover:shadow-[0_10px_30px_-10px_rgba(98,184,242,0.3)] hover:-translate-y-1 transition-all duration-300 inline-block whitespace-normal overflow-hidden group"
+                  className="snap-start shrink-0 w-[260px] sm:w-[330px] rounded-2xl bg-white/[0.04] backdrop-blur-sm border border-second hover:border-accent/60 shadow-lg hover:shadow-[0_16px_36px_-10px_rgba(98,184,242,0.35)] hover:-translate-y-2 hover:scale-[1.02] transition-all duration-500 ease-out overflow-hidden group flex flex-col justify-between cursor-pointer"
                 >
-                  {/* Bungkus Foto dengan Efek Zoom Saat Hover */}
-                  <div className="relative aspect-video w-full overflow-hidden bg-primary/5">
+                  {/* Top Bar Aksen Gradient */}
+                  <div className="h-1 bg-gradient-to-r from-accent via-second to-accent/40 opacity-70 group-hover:opacity-100 transition-opacity" />
+
+                  {/* Wrapper Gambar dengan Efek Zoom + Rotasi Mikro */}
+                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-white/5">
                     <img
                       src={item.gambar}
                       alt={item.deskripsi}
-                      className="w-full h-full object-cover group-hover:scale-130 transition-transform duration-500 ease-out"
+                      className="w-full h-full object-cover group-hover:scale-110 group-hover:rotate-1 transition-transform duration-700 ease-out"
                       loading="lazy"
                     />
+                    {/* Lapisan Gradient Gelap Halus */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary/70 via-transparent to-transparent opacity-80 group-hover:opacity-30 transition-opacity duration-300" />
                   </div>
 
-                  {/* Bagian Teks Deskripsi */}
+                  {/* Keterangan Teks */}
                   <div className="p-4 sm:p-5">
-                    <p className="font-sans font-bold text-center text-primary text-sm sm:text-base line-clamp-2 group-hover:text-background transition-colors duration-300">
+                    <p className="font-sans font-extrabold text-center text-background group-hover:text-accent text-sm sm:text-base line-clamp-2 transition-colors duration-300 leading-snug">
                       {item.deskripsi}
+                    </p>
+                  </div>
+
+                  <div className="p-4 sm:p-5">
+                    <p className="text-xs text-center text-background/60 hover:text-second transition-colors duration-300">
+                      {item.year}
                     </p>
                   </div>
                 </div>
               ))}
             </div>
+          </div>
+
+          {/* Petunjuk Swipe di Mobile */}
+          <div className="flex sm:hidden items-center justify-center gap-1.5 mt-4 text-[11px] font-mono text-background/40">
+            <span>&larr; Geser untuk melihat foto &rarr;</span>
           </div>
         </div>
       </section>
@@ -557,7 +632,7 @@ export default function Home() {
 {/* Projects Section */}
       <section
         id="projects"
-        className="relative z-10 py-14 sm:py-20 px-4 sm:px-6 bg-primary border-t border-white/10"
+        className="relative z-10 py-14 sm:py-20 px-4 sm:px-6 bg-primary border-t border-second"
       >
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 sm:mb-12 gap-5">
@@ -625,7 +700,7 @@ export default function Home() {
                 {displayedProjects.map((project) => (
                   <div
                     key={project.id}
-                    className="group bg-white/[0.04] backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl hover:border-accent/50 hover:bg-white/[0.07] transition-all duration-300 flex flex-col justify-between"
+                    className="group bg-white/[0.04] backdrop-blur-sm border border-second rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl hover:border-accent/50 hover:bg-white/[0.07] transition-all duration-300 flex flex-col justify-between"
                   >
                     <div>
                       {/* Top Accent Bar */}
