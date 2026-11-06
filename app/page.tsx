@@ -104,22 +104,22 @@ const dokumentasi: dokumentasi[] = [
   {
     id: 7,
     deskripsi: "Kunjungan Internal BEM FATISDA x BEM SV 2026",
-    gambar: "/bemsv.jpg"
+    gambar: "/bemsv.JPG"
   },
   {
     id: 8,
     deskripsi: "Kunjungan Eksternal BEM FATISDA x HIMAKOM UGM 2026",
-    gambar: "/kunex.jpg"
+    gambar: "/kunex.JPG"
   },
   {
     id: 9,
     deskripsi: "Gardapada BEM FATISDA UNS 2026",
-    gambar: "/gardapada.jpg"
+    gambar: "/gardapada.JPG"
   },
   {
     id: 10,
     deskripsi: "Rapat Kerja BEM FATISDA UNS 2026",
-    gambar: "/raker.jpg"
+    gambar: "/raker.JPG"
   }
 ];
 
