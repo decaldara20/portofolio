@@ -41,7 +41,7 @@ const PROFILE = {
   status: "Deep learning into Data Science & Student Leadership.",
   bioSingkat:
     "Saya adalah seorang mahasiswa Data Science di Universitas Sebelas Maret yang memiliki minat mendalam pada integrasi pengembangan perangkat lunak, analitik data, dan kepemimpinan organisasi. Sebagai Presiden BEM FATISDA UNS 2026, saya mengasah kemampuan manajemen tim, perencanaan strategis, dan pengambilan keputusan berbasis data (data-driven decision making)",
-  instagramUrl: "https://www.instagram.com/kunto_rossindu?rpxt=MWgzYnc3bDV1OWJx",
+  instagramUrl: "https://www.instagram.com/kunto_rossindu?cplk=MWgzYnc3bDV1OWJx",
   githubUrl: "https://github.com/decaldara20/",
   linkedinUrl: "https://linkedin.com/in/kuntohidayat",
   email: "kuntohidayat20@gmail.com",

@@ -15,6 +15,7 @@ const PROFILE = {
   githubUrl: "https://github.com/decaldara20/",
   linkedinUrl: "https://linkedin.com/in/kuntohidayat",
   email: "kuntohidayat20@gmail.com",
+  instagramUrl: "https://www.instagram.com/kunto_rossindu?cplk=MWgzYnc3bDV1OWJx",
 };
 
 const QUICK_PROMPTS = [
