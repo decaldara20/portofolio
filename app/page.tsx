@@ -304,7 +304,7 @@ export default function Home() {
       <AnimatedBackground />
 
       {/* Navigation (Responsif Mobile & Desktop) */}
-      <nav className="sticky top-0 z-50 backdrop-blur-md bg-primary border-b border-second">
+      <nav className="sticky top-0 z-50 backdrop-blur-md bg-background border-b border-second">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between gap-2">
           <a href="#" className="flex items-center gap-2.5 group shrink-0">
             <div className="w-9 h-9 rounded-xl bg-accent text-primary flex items-center justify-center font-mono font-bold text-sm shadow-sm group-hover:bg-second group-hover:text-primary transition-colors">
