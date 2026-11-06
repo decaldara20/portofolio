@@ -5,7 +5,8 @@
   --foreground: #1E293B; /* Warna Teks Utama */
   --primary: #101f0a;    /* Warna Brand / Dominan */
   --accent: #62b8f2;     /* Warna Aksen / Sorotan (Ubah di sini kapan saja) */
-  --secondary-accent: #3343f5; /* Warna Aksen Sekunder */
+  --second: #FFD700; /* Warna Aksen Sekunder */
+  --third: #000080 ; /* Warna Aksen Tersier */
 }
 
 @theme inline {
@@ -13,6 +14,9 @@
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
   --color-accent: var(--accent);
+  /* PERBAIKAN: Tailwind v4 mendeteksi ini sebagai class 'second' */
+  --color-second: var(--second); 
+  --color-third: var(--third);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -25,4 +29,13 @@ body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), sans-serif;
+}
+
+@keyframes marquee-right {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
+}
+
+.animate-marquee-right {
+  animation: marquee-right 20s linear infinite;
 }

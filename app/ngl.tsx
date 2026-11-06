@@ -194,7 +194,7 @@ export default function Ngl() {
       {/* Navigasi Atas (Responsif Mobile & Desktop) */}
       <nav
         aria-label="Navigasi utama"
-        className="sticky top-0 z-50 border-b border-primary/10 bg-background/90 backdrop-blur-md"
+        className="sticky top-0 z-50 border-b border-primary/10 bg-primary backdrop-blur-md"
       >
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-2 px-4 py-3 sm:px-6 sm:py-3.5">
           <Link
@@ -202,12 +202,12 @@ export default function Ngl() {
             aria-label="Kunto, kembali ke portofolio"
             className="group flex items-center gap-2 sm:gap-2.5 cursor-pointer shrink-0"
           >
-            <span className="flex size-8 sm:size-9 items-center justify-center rounded-xl bg-primary font-mono text-xs sm:text-sm font-bold text-background shadow-sm transition-all duration-200 group-hover:bg-accent group-hover:text-primary group-hover:scale-105">
-              {PROFILE.panggilan.charAt(0).toUpperCase()}
-            </span>
-            <span className="text-sm sm:text-lg font-bold tracking-tight text-primary whitespace-nowrap">
+            <div className="w-9 h-9 rounded-xl bg-accent text-primary flex items-center justify-center font-mono font-bold text-sm shadow-sm group-hover:bg-second group-hover:text-primary transition-colors">
+              {"kunto".charAt(0).toUpperCase()}
+            </div>
+            <span className="text-base sm:text-lg font-bold tracking-tight text-background whitespace-nowrap">
               {PROFILE.panggilan}
-              <span className="text-accent">.portofolio</span>
+              <span className="text-accent hover:text-second">.portofolio</span>
             </span>
           </Link>
 
@@ -216,7 +216,7 @@ export default function Ngl() {
               type="button"
               onClick={handleCopy}
               aria-label="Bagikan Link Halaman"
-              className="cursor-pointer touch-manipulation inline-flex items-center justify-center gap-1.5 rounded-xl border border-primary/15 bg-white/85 px-2.5 py-2 sm:px-3 sm:py-2 text-xs sm:text-sm font-semibold text-primary shadow-sm transition-all duration-200 hover:border-accent hover:bg-accent/10 active:scale-95"
+              className="cursor-pointer touch-manipulation inline-flex items-center justify-center gap-1.5 rounded-xl border border-primary/15 bg-white/85 px-2.5 py-2 sm:px-3 sm:py-2 text-xs sm:text-sm font-semibold text-primary shadow-sm transition-all duration-200 hover:border-accent hover:bg-second active:scale-95"
             >
               <Icon name={copied ? "check" : "copy"} size={15} />
               <span className="hidden xs:inline sm:inline">
@@ -226,7 +226,7 @@ export default function Ngl() {
 
             <Link
               href="/"
-              className="cursor-pointer touch-manipulation inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl bg-primary px-3 py-2 sm:px-4 sm:py-2.5 text-xs sm:text-sm font-semibold text-background shadow-sm transition-all duration-200 hover:bg-accent hover:text-primary hover:-translate-y-0.5 active:scale-95 whitespace-nowrap"
+              className="cursor-pointer touch-manipulation inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl bg-background px-3 py-2 sm:px-4 sm:py-2.5 text-xs sm:text-sm font-semibold text-primary shadow-sm transition-all duration-200 hover:bg-second hover:text-primary hover:-translate-y-0.5 active:scale-95 whitespace-nowrap"
             >
               <span className="hidden sm:inline">Kembali ke Portofolio</span>
               <span className="sm:hidden">Portofolio</span>
@@ -441,14 +441,22 @@ export default function Ngl() {
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-5 text-sm font-medium">
+          <div className="flex items-center gap-5 text-sm font-medium">
+            <a
+              href={PROFILE.instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-background/80 hover:text-accent transition-colors"
+            >
+              <img src="/ig.png" alt="Instagram" className="w-5 h-5" />
+            </a>
             <a
               href={PROFILE.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="text-background/80 hover:text-accent transition-colors"
             >
-              GitHub
+              <img src="/github.png" alt="GitHub" className="w-5 h-5" />
             </a>
             <a
               href={PROFILE.linkedinUrl}
@@ -456,15 +464,14 @@ export default function Ngl() {
               rel="noopener noreferrer"
               className="text-background/80 hover:text-accent transition-colors"
             >
-              LinkedIn
+              <img src="/linkedin.png" alt="LinkedIn" className="w-5 h-5" />
             </a>
-            <Link
-              href="/ngl/dashboard"
-              className="text-background/40 hover:text-accent text-xs font-mono transition-colors"
-              title="Ruang Admin"
+            <a
+              href={`mailto:${PROFILE.email}`}
+              className="text-background/80 hover:text-accent transition-colors"
             >
-              [Inbox Admin]
-            </Link>
+              <img src="/email.png" alt="Email" className="w-5 h-5" />
+            </a>
           </div>
         </div>
       </footer>
