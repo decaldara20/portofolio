@@ -1,315 +1,178 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
 
-interface ScrollyParticle {
-  // Posisi saat ini di layar
-  x: number;
-  y: number;
-  // Parameter dasar partikel
-  size: number;
-  isAccent: boolean;
-  phaseOffset: number;
-  // Koordinat formasi Fase 1 (Hero: Orbit / Lingkaran Visi)
-  orbitAngle: number;
-  orbitRadius: number;
-  // Koordinat formasi Fase 2 (Projects: Gelombang Data Terstruktur)
-  gridCol: number;
-  gridRow: number;
-  // Koordinat formasi Fase 3 (About: Konvergensi / Pilar Fokus)
-  pillarX: number;
-  pillarY: number;
+interface SectionMarker {
+  id: string;
+  name: string;
+  color: string; // Warna saat titik berada di section ini
+  glowColor: string;
 }
 
+const SECTIONS: SectionMarker[] = [
+  {
+    id: "hero",
+    name: "Beranda",
+    color: "#62b8f2", // var(--accent)
+    glowColor: "rgba(98, 184, 242, 0.7)",
+  },
+  {
+    id: "dokumentasi",
+    name: "Dokumentasi",
+    color: "#FFD700", // var(--second)
+    glowColor: "rgba(255, 215, 0, 0.7)",
+  },
+  {
+    id: "projects",
+    name: "Experience",
+    color: "#62b8f2", // var(--accent)
+    glowColor: "rgba(98, 184, 242, 0.7)",
+  },
+  {
+    id: "about",
+    name: "Tentang Saya",
+    color: "#101f0a", // var(--primary)
+    glowColor: "rgba(16, 31, 10, 0.6)",
+  },
+];
+
 export default function AnimatedBackground() {
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const [scrollProgress, setScrollProgress] = useState(0); // 0 sampai 1
+  const [activeSection, setActiveSection] = useState<string>("hero");
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
     let animationFrameId: number;
-    let particles: ScrollyParticle[] = [];
+    let targetProgress = 0;
+    let currentProgress = 0;
 
-    // ==========================================
-    // PENGATURAN SCROLLYTELLING (MUDAH DIEDIT)
-    // ==========================================
-    const PARTICLE_COUNT = 72; // Jumlah titik data
-    const CONNECT_DISTANCE = 125; // Jarak maksimal garis penghubung
-    const SMOOTHING = 0.06; // Kehalusan transisi saat di-scroll (0.03 - 0.1)
-
-    // State pelacak posisi & kecepatan scroll
-    let targetScrollProgress = 0; // 0 (Paling Atas) s/d 1 (Paling Bawah)
-    let smoothScroll = 0;
-    let lastScrollY = window.scrollY;
-    let scrollVelocity = 0;
-    let time = 0;
-
-    // Mengambil warna langsung dari variabel CSS di globals.css
-    const getThemeColors = () => {
-      const styles = getComputedStyle(document.documentElement);
-      const primary = styles.getPropertyValue("--primary").trim() || "#1E293B";
-      const accent = styles.getPropertyValue("--accent").trim() || "#0EA5E9";
-      return { primary, accent };
-    };
-
-    // Fungsi bantu interpolasi linear (perpindahan mulus antar bentuk)
-    const lerp = (start: number, end: number, t: number) =>
-      start + (end - start) * Math.max(0, Math.min(1, t));
-
-    const updateScrollMetrics = () => {
-      const maxScroll =
+    const handleScroll = () => {
+      const totalHeight =
         document.documentElement.scrollHeight - window.innerHeight;
       const currentScroll = window.scrollY;
 
-      targetScrollProgress = maxScroll > 0 ? currentScroll / maxScroll : 0;
-      scrollVelocity = currentScroll - lastScrollY;
-      lastScrollY = currentScroll;
-    };
+      targetProgress = totalHeight > 0 ? currentScroll / totalHeight : 0;
 
-    const initParticles = () => {
-      particles = [];
-      const cols = 12;
-      const rows = Math.ceil(PARTICLE_COUNT / cols);
+      // Deteksi section yang sedang aktif di viewport
+      const scrollPosition = currentScroll + window.innerHeight * 0.35;
 
-      for (let i = 0; i < PARTICLE_COUNT; i++) {
-        const col = i % cols;
-        const row = Math.floor(i / cols);
+      const sectionPositions = SECTIONS.map((sec) => {
+        const el =
+          sec.id === "hero"
+            ? document.body
+            : document.getElementById(sec.id);
+        return {
+          id: sec.id,
+          top: el ? el.offsetTop : 0,
+        };
+      });
 
-        particles.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          size: (i % 3 === 0 ? 2.4 : 1.5),
-          isAccent: i % 3 === 0,
-          phaseOffset: (i / PARTICLE_COUNT) * Math.PI * 2,
-          // Fase 1: Orbit melingkar
-          orbitAngle: (i / PARTICLE_COUNT) * Math.PI * 2,
-          orbitRadius: 110 + (i % 4) * 55,
-          // Fase 2: Matriks gelombang data
-          gridCol: col / (cols - 1),
-          gridRow: row / Math.max(1, rows - 1),
-          // Fase 3: Simetri fokus di bagian About
-          pillarX: (i % 2 === 0 ? 0.22 : 0.78) + ((i % 5) - 2) * 0.035,
-          pillarY: (i / PARTICLE_COUNT),
-        });
-      }
-    };
-
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      updateScrollMetrics();
-    };
-
-    resizeCanvas();
-    initParticles();
-
-    window.addEventListener("resize", resizeCanvas);
-    window.addEventListener("scroll", updateScrollMetrics, { passive: true });
-
-    const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const { primary, accent } = getThemeColors();
-
-      time += 0.012;
-      // Perhalus pergerakan scroll & redam kecepatan secara bertahap
-      smoothScroll += (targetScrollProgress - smoothScroll) * SMOOTHING;
-      scrollVelocity *= 0.88;
-
-      const w = canvas.width;
-      const h = canvas.height;
-
-      // =====================================================
-      // 1. SOROTAN CAHAYA PEMANDU FOKUS (AMBIENT SPOTLIGHT)
-      // =====================================================
-      // Posisi cahaya bergeser dari kanan atas (Hero) -> kiri tengah (Projects) -> tengah bawah (About)
-      let spotlightX = w * 0.72;
-      let spotlightY = h * 0.35;
-
-      if (smoothScroll < 0.5) {
-        const t = smoothScroll / 0.5;
-        spotlightX = lerp(w * 0.72, w * 0.25, t);
-        spotlightY = lerp(h * 0.35, h * 0.5, t);
-      } else {
-        const t = (smoothScroll - 0.5) / 0.5;
-        spotlightX = lerp(w * 0.25, w * 0.5, t);
-        spotlightY = lerp(h * 0.5, h * 0.65, t);
-      }
-
-      const radius = Math.max(w, h) * 0.38;
-      const grad = ctx.createRadialGradient(
-        spotlightX,
-        spotlightY,
-        10,
-        spotlightX,
-        spotlightY,
-        radius
-      );
-      grad.addColorStop(0, accent);
-      grad.addColorStop(1, "transparent");
-
-      ctx.save();
-      ctx.globalAlpha = 0.07;
-      ctx.fillStyle = grad;
-      ctx.beginPath();
-      ctx.arc(spotlightX, spotlightY, radius, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.restore();
-
-      // =====================================================
-      // 2. TRANSFORMASI BENTUK PARTIKEL BERDASARKAN SCROLL
-      // =====================================================
-      for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
-
-        // --- FORMASI 1: HERO (0.0 - 0.35) -> Cincin Orbit Kepemimpinan & Data ---
-        const angle = p.orbitAngle + time * 0.4 + smoothScroll * 2.5;
-        const heroCenterX = w > 1024 ? w * 0.68 : w * 0.5;
-        const heroCenterY = h * 0.46;
-        const heroX =
-          heroCenterX + Math.cos(angle) * p.orbitRadius * (w > 768 ? 1.1 : 0.7);
-        const heroY =
-          heroCenterY + Math.sin(angle) * p.orbitRadius * 0.75;
-
-        // --- FORMASI 2: PROJECTS (0.35 - 0.75) -> Gelombang Aliran Data ---
-        const waveX = w * 0.08 + p.gridCol * (w * 0.84);
-        const waveOffset =
-          Math.sin(p.gridCol * Math.PI * 2.5 + time * 1.5 + smoothScroll * 6) *
-          55;
-        const waveY = h * 0.2 + p.gridRow * (h * 0.6) + waveOffset;
-
-        // --- FORMASI 3: ABOUT (0.75 - 1.0) -> Bingkai Konvergensi Simetris ---
-        const aboutX =
-          w * p.pillarX + Math.sin(time + p.phaseOffset) * 28;
-        const aboutY =
-          h * 0.12 +
-          ((p.pillarY + time * 0.08 + smoothScroll * 0.5) % 1) * (h * 0.76);
-
-        // Hitung posisi target berdasarkan persentase scroll saat ini
-        let targetX = heroX;
-        let targetY = heroY;
-
-        if (smoothScroll <= 0.5) {
-          // Transisi Fase 1 (Hero) ke Fase 2 (Projects)
-          const t = smoothScroll / 0.5;
-          targetX = lerp(heroX, waveX, t);
-          targetY = lerp(heroY, waveY, t);
-        } else {
-          // Transisi Fase 2 (Projects) ke Fase 3 (About)
-          const t = (smoothScroll - 0.5) / 0.5;
-          targetX = lerp(waveX, aboutX, t);
-          targetY = lerp(waveY, aboutY, t);
-        }
-
-        // Gerakkan partikel menuju formasi target + efek pegas dari kecepatan scroll
-        p.x += (targetX - p.x) * 0.08;
-        p.y += (targetY - scrollVelocity * 0.45 - p.y) * 0.08;
-
-        // Gambar titik partikel (dan efek rentang garis saat di-scroll cepat)
-        const velocityStretch = Math.min(Math.abs(scrollVelocity) * 0.35, 14);
-
-        ctx.save();
-        ctx.globalAlpha = p.isAccent ? 0.55 : 0.3;
-        ctx.strokeStyle = p.isAccent ? accent : primary;
-        ctx.fillStyle = p.isAccent ? accent : primary;
-        ctx.lineWidth = p.size * 1.4;
-        ctx.lineCap = "round";
-
-        if (velocityStretch > 1.5) {
-          ctx.beginPath();
-          ctx.moveTo(p.x, p.y - velocityStretch);
-          ctx.lineTo(p.x, p.y + velocityStretch);
-          ctx.stroke();
-        } else {
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-          ctx.fill();
-        }
-        ctx.restore();
-
-        // Gambar jaringan penghubung antar titik terdekat
-        for (let j = i + 1; j < particles.length; j++) {
-          const p2 = particles[j];
-          const dx = p.x - p2.x;
-          const dy = p.y - p2.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-
-          if (dist < CONNECT_DISTANCE) {
-            ctx.save();
-            const alpha = (1 - dist / CONNECT_DISTANCE) * 0.14;
-            ctx.globalAlpha = alpha;
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = p.isAccent && p2.isAccent ? accent : primary;
-            ctx.lineWidth = 0.8;
-            ctx.stroke();
-            ctx.restore();
-          }
+      for (let i = sectionPositions.length - 1; i >= 0; i--) {
+        if (scrollPosition >= sectionPositions[i].top) {
+          setActiveSection(sectionPositions[i].id);
+          break;
         }
       }
-
-      // =====================================================
-      // 3. GARIS INDIKATOR ALUR SCROLL (DI SISI KANAN LAYAR)
-      // =====================================================
-      if (w >= 768) {
-        const trackX = w - 22;
-        const trackTop = h * 0.28;
-        const trackHeight = h * 0.44;
-
-        // Garis jalur dasar
-        ctx.save();
-        ctx.globalAlpha = 0.12;
-        ctx.strokeStyle = primary;
-        ctx.lineWidth = 1.5;
-        ctx.beginPath();
-        ctx.moveTo(trackX, trackTop);
-        ctx.lineTo(trackX, trackTop + trackHeight);
-        ctx.stroke();
-
-        // Garis progres aktif mengikuti scroll
-        ctx.globalAlpha = 0.75;
-        ctx.strokeStyle = accent;
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        ctx.moveTo(trackX, trackTop);
-        ctx.lineTo(trackX, trackTop + trackHeight * smoothScroll);
-        ctx.stroke();
-
-        // 3 Titik penanda section (Hero, Experience, About)
-        const checkpoints = [0, 0.5, 1];
-        checkpoints.forEach((cp) => {
-          const cy = trackTop + trackHeight * cp;
-          const isPassed = smoothScroll >= cp - 0.05;
-
-          ctx.globalAlpha = isPassed ? 0.9 : 0.25;
-          ctx.fillStyle = isPassed ? accent : primary;
-          ctx.beginPath();
-          ctx.arc(trackX, cy, isPassed ? 3.5 : 2.5, 0, Math.PI * 2);
-          ctx.fill();
-        });
-        ctx.restore();
-      }
-
-      animationFrameId = requestAnimationFrame(draw);
     };
 
-    draw();
+    // Animasi lerp (smoothing easing) agar pergerakan titik halus dan tidak patah-patah
+    const smoothLoop = () => {
+      currentProgress += (targetProgress - currentProgress) * 0.1;
+      setScrollProgress(currentProgress);
+      animationFrameId = requestAnimationFrame(smoothLoop);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    smoothLoop();
 
     return () => {
-      window.removeEventListener("resize", resizeCanvas);
-      window.removeEventListener("scroll", updateScrollMetrics);
+      window.removeEventListener("scroll", handleScroll);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
 
+  // Ambil konfigurasi warna section aktif
+  const currentTheme =
+    SECTIONS.find((s) => s.id === activeSection) || SECTIONS[0];
+
+  const scrollToSection = (id: string) => {
+    if (id === "hero") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
-    <canvas
-      ref={canvasRef}
-      className="fixed inset-0 pointer-events-none z-0"
-      aria-hidden="true"
-    />
+    <aside
+      aria-label="Scroll Progress Navigator"
+      className="fixed right-3.5 sm:right-6 top-1/2 -translate-y-1/2 z-40 hidden sm:flex flex-col items-center select-none pointer-events-auto"
+    >
+      <div className="relative h-64 sm:h-72 w-8 flex items-center justify-center">
+        {/* 1. Jalur Garis Track Dasar */}
+        <div className="absolute top-0 bottom-0 w-[2px] bg-primary/10 rounded-full" />
+
+        {/* 2. Garis Isi (Progress Fill) yang Tumbuh Mengikuti Scroll */}
+        <div
+          className="absolute top-0 w-[2px] rounded-full transition-all duration-300 ease-out"
+          style={{
+            height: `${Math.min(Math.max(scrollProgress * 100, 0), 100)}%`,
+            backgroundColor: currentTheme.color,
+            boxShadow: `0 0 10px ${currentTheme.glowColor}`,
+          }}
+        />
+
+        {/* 3. Titik Penanda (Section Checkpoints) */}
+        <div className="absolute inset-y-0 w-full flex flex-col justify-between py-1 pointer-events-none">
+          {SECTIONS.map((sec) => {
+            const isActive = activeSection === sec.id;
+            return (
+              <div
+                key={sec.id}
+                className="group relative flex items-center justify-center w-full pointer-events-auto cursor-pointer"
+                onClick={() => scrollToSection(sec.id)}
+              >
+                {/* Node Titik */}
+                <span
+                  className={`w-2 h-2 rounded-full border transition-all duration-300 ${
+                    isActive
+                      ? "scale-125 border-white ring-2 ring-primary/20"
+                      : "bg-white border-primary/25 group-hover:scale-110 group-hover:border-accent"
+                  }`}
+                  style={{
+                    backgroundColor: isActive ? currentTheme.color : undefined,
+                  }}
+                />
+
+                {/* Tooltip Nama Section saat Di-Hover */}
+                <div className="absolute right-6 px-2.5 py-1 rounded-md bg-primary text-background text-[11px] font-mono font-medium tracking-wide whitespace-nowrap opacity-0 translate-x-2 pointer-events-none group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200 shadow-md">
+                  {sec.name}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* 4. Titik Utama Pelacak Scroll (Active Glowing Traveler Head) */}
+        <div
+          className="absolute left-1/2 -translate-x-1/2 pointer-events-none transition-transform duration-75"
+          style={{
+            top: `${Math.min(Math.max(scrollProgress * 100, 0), 100)}%`,
+            transform: "translate(-50%, -50%)",
+          }}
+        >
+          <div
+            className="w-3.5 h-3.5 rounded-full border-2 border-white shadow-lg transition-colors duration-500 ease-out"
+            style={{
+              backgroundColor: currentTheme.color,
+              boxShadow: `0 0 14px 2px ${currentTheme.glowColor}`,
+            }}
+          />
+        </div>
+      </div>
+    </aside>
   );
 }
