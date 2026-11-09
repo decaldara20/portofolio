@@ -894,11 +894,11 @@ export default function Home() {
                 {education.map((edu, index) => (
                   <div
                     key={index}
-                    className="flex flex-col justify-between p-5 rounded-2xl bg-background/40 backdrop-blur-sm border border-primary/5 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:border-accent hover:shadow-[0_10px_30px_-10px_rgba(98,184,242,0.2)] hover:-translate-y-1 transition-all duration-300 group"
+                    className="flex flex-col justify-between p-5 rounded-2xl bg-background/40 backdrop-blur-sm border border-second shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:border-accent hover:shadow-[0_10px_30px_-10px_rgba(98,184,242,0.2)] hover:-translate-y-1 transition-all duration-300 group"
                   >
                     <div>
                       {/* Badge Jenjang */}
-                      <span className="inline-block px-2.5 py-0.5 text-[10px] font-mono font-bold uppercase tracking-wider rounded-md bg-primary text-white group-hover:bg-accent transition-colors duration-300">
+                      <span className="inline-block px-2.5 py-0.5 text-[10px] font-mono font-bold uppercase tracking-wider rounded-md bg-primary text-background group-hover:bg-accent hover:text-background transition-colors duration-300">
                         {edu.jenjang}
                       </span>
 
