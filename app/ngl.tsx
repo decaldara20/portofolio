@@ -197,7 +197,7 @@ export default function Ngl() {
           >
             <div className="w-8 h-8 rounded-xl sm:rounded-full bg-primary text-background flex items-center justify-center overflow-hidden shadow-xs border border-primary/10 group-hover:border-accent transition-all duration-300">
               <img
-                src="/profile.JPG"
+                src="/profile.jpg"
                 alt="Profil"
                 onError={(e) => {
                   const target = e.currentTarget;

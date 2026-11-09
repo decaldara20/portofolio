@@ -170,7 +170,7 @@ const dokumentasi: DokumentasiItem[] = [
   {
     id: 5,
     deskripsi: "Menteri Bisnis dan Kemitraan BEM FATISDA UNS",
-    gambar: "/bem-2025.jpg",
+    gambar: "/bem-2025.jpeg",
     year: 2025,
   },
   {
@@ -220,6 +220,24 @@ const dokumentasi: DokumentasiItem[] = [
     deskripsi: "Sosialisasi BEM FATISDA di PKKMB FATISDA UNS",
     gambar: "/sosialisasi.JPG",
     year: 2026,
+  },
+  {
+    id: 14,
+    deskripsi: "Kunjungan Internal BEM FATISDA x Himakesja UNS",
+    gambar: "/kunin25.JPG",
+    year: 2025,
+  },
+  {
+    id: 15,
+    deskripsi: "Staff Konsumsi PKKMB FATISDA UNS",
+    gambar: "/pkkmb25.JPG",
+    year: 2025,
+  },
+  {
+    id: 16,
+    deskripsi: "Kunjungan Eksternal BEM FATISDA UNS x HMIF UII",
+    gambar: "/kunex25.JPG",
+    year: 2025,
   }
 ];
 
@@ -363,6 +381,17 @@ const PROJECTS_DATA: Project[] = [
     skills: ["Teaching", "Communication", "Technical Skills"],
     notes: "On going",
     year: 2026,
+  },
+  {
+    id: 12,
+    nama: "Sistem Autentikasi Dinamis JWT(HS256) Berbasis Fuzzy Logic & Zero-Trust",
+    kategori: "Course Project",
+    deskripsi:
+      "Sistem autentikasi dinamis yang menggunakan JSON Web Tokens (JWT) dengan algoritma HS256, dikembangkan berdasarkan logika fuzzy dan prinsip zero-trust.",
+    skills: ["Security", "Programming", "Research", "Web Development"],
+    notes: "Succeed",
+    year: 2026,
+    link: "https://kda-2-b.vercel.app/",
   },
 ];
 
