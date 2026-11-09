@@ -351,7 +351,7 @@ const PROJECTS_DATA: Project[] = [
     deskripsi:
       "Asisten praktikum yang membantu dalam pelaksanaan praktikum mata kuliah Perancangan dan Implementasi Basis Data Sains Data 2026, termasuk persiapan materi, bimbingan praktikum, dan evaluasi hasil praktikum.",
     skills: ["Teaching", "Communication", "Technical Skills"],
-    notes: "Succeed",
+    notes: "On going",
     year: 2026,
   },
   {
@@ -361,7 +361,7 @@ const PROJECTS_DATA: Project[] = [
     deskripsi:
       "Asisten praktikum yang membantu dalam pelaksanaan praktikum mata kuliah Jaringan Komputer Prodi Sains Data 2026, termasuk persiapan materi, bimbingan praktikum, dan evaluasi hasil praktikum.",
     skills: ["Teaching", "Communication", "Technical Skills"],
-    notes: "Succeed",
+    notes: "On going",
     year: 2026,
   },
 ];
@@ -396,154 +396,129 @@ export default function Home() {
       {/* Background Animasi Scroll-Triggered Scrollytelling */}
       <AnimatedBackground />
 
-      {/* Navigation (Responsif Mobile & Desktop) */}
-      <nav className="relative z-10 w-full text-primary mt-auto">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between gap-2">
-          <a href="#" className="flex items-center gap-2.5 group shrink-0">
-            <span className="text-base sm:text-lg font-bold tracking-tight text-primary whitespace-nowrap">
+      {/* Navigation (Floating Glass Island Navbar) */}
+      <header className="sticky top-3 sm:top-5 z-50 w-full px-4 sm:px-6 pointer-events-none">
+        <nav
+          aria-label="Navigasi Utama"
+          className="max-w-6xl mx-auto rounded-2xl sm:rounded-full bg-white/80 backdrop-blur-md border-2 border-primary/10 shadow-[0_8px_30px_rgba(16,31,10,0.06)] px-4 sm:px-6 py-2.5 sm:py-3 flex items-center justify-between gap-3 pointer-events-auto transition-all duration-300 hover:border-accent/50"
+        >
+          {/* Brand Logo */}
+          <a
+            href="#"
+            className="flex items-center gap-2.5 group shrink-0 select-none"
+          >
+          <div className="w-8 h-8 rounded-xl sm:rounded-full bg-primary text-background flex items-center justify-center overflow-hidden shadow-xs border border-primary/10 group-hover:border-accent transition-all duration-300">
+              <img src="./profile.JPG" alt="Profil" className="w-full h-full object-cover rounded-xl border" />
+            </div>
+            <span className="text-sm sm:text-base font-bold tracking-tight text-primary whitespace-nowrap">
               {PROFILE.panggilan}
-              <span className="text-accent hover:text-primary">.Portfolio</span>
+              <span className="text-primary group-hover:text-accent transition-colors">
+                .Rossindu
+              </span>
             </span>
           </a>
 
-          {/* Menu Desktop (Tampil di layar >= 768px) */}
-          <ul className="hidden md:flex items-center gap-6 text-sm font-medium text-primary">
-            <li>
-              <a
-                href="/ngl"
-                className="group inline-flex items-center gap-1.5 hover:text-second font-semibold transition-colors whitespace-nowrap"
-              >
-                <span>Kirim Pesan</span>
-                {/* Ikon Pesan Masuk dengan Animasi Bounce Halus */}
-                <span className="relative flex items-center justify-center">
-                  <svg
-                    className="w-4 h-4 text-accent group-hover:text-second animate-bounce"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
-                    />
-                  </svg>
-                </span>
-              </a>
-            </li>
-            <li>
-              <a
-                href="#projects"
-                className="text-primary hover:text-second text-sm font-semibold transition-all"
-              >
-                Experience
-              </a>
-            </li>
-            <li>
-              <a
-                href="#about"
-                className="text-primary hover:text-second text-sm font-semibold transition-all"
-              >
-                Tentang Saya
-              </a>
-            </li>
-            <li>
-              <a
-                href={`mailto:${PROFILE.email}`}
-                className="text-primary hover:text-second text-sm font-semibold transition-all"
-              >
-                Hubungi Saya
-              </a>
-            </li>
-          </ul>
+          {/* Menu Desktop */}
+          <div className="hidden md:flex items-center gap-1.5 lg:gap-2">
+            <a
+              href="#projects"
+              className="px-3.5 py-1.5 rounded-full text-xs font-bold text-primary/70 hover:text-primary hover:bg-primary/5 transition-all duration-200"
+            >
+              Experience
+            </a>
+            <a
+              href="#about"
+              className="px-3.5 py-1.5 rounded-full text-xs font-bold text-primary/70 hover:text-primary hover:bg-primary/5 transition-all duration-200"
+            >
+              Tentang Saya
+            </a>
 
-          {/* Tombol Hamburger Mobile (Tampil di layar HP < 768px) */}
+            {/* Badge Khusus "Kirim Pesan" */}
+            <a
+              href="/ngl"
+              className="group inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-accent/15 border border-accent/40 text-xs font-bold text-primary hover:bg-accent hover:border-accent transition-all duration-200"
+            >
+              <span>Kirim Pesan</span>
+              <svg
+                className="w-3.5 h-3.5 text-primary group-hover:rotate-12 transition-transform duration-200"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
+                />
+              </svg>
+            </a>
+
+            {/* CTA Button "Hubungi Saya" */}
+            <a
+              href={`mailto:${PROFILE.email}`}
+              className="ml-2 inline-flex items-center justify-center bg-primary hover:bg-accent text-background hover:text-primary px-4 py-2 rounded-full text-xs font-bold shadow-xs hover:shadow-[0_4px_16px_rgba(98,184,242,0.4)] transition-all duration-200 active:scale-95"
+            >
+              Hubungi Saya
+            </a>
+          </div>
+
+          {/* Tombol Hamburger Mobile */}
           <button
             type="button"
             onClick={() => setIsMobileMenuOpen((prev) => !prev)}
-            className="md:hidden inline-flex items-center justify-center p-2 rounded-xl text-primary bg-background hover:bg-primary/5 border border-primary/10 transition-colors cursor-pointer"
+            className="md:hidden inline-flex items-center justify-center p-2 rounded-xl text-primary bg-primary/5 hover:bg-primary/10 border border-primary/10 transition-colors cursor-pointer"
             aria-label="Toggle Menu Navigasi"
           >
             {isMobileMenuOpen ? (
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             ) : (
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             )}
           </button>
-        </div>
+        </nav>
 
-        {/* Panel Menu Lipat khusus Mobile */}
+        {/* Panel Menu Lipat Khusus Mobile */}
         {isMobileMenuOpen && (
-          <div className="md:hidden border-t border-primary/10 bg-background/95 backdrop-blur-md px-4 pt-3 pb-4 space-y-2 shadow-lg">
+          <div className="md:hidden mt-2 max-w-6xl mx-auto rounded-2xl bg-white/95 backdrop-blur-md border-2 border-primary/10 p-3 space-y-1.5 shadow-xl pointer-events-auto">
             <a
               href="#projects"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="block px-3 py-2.5 rounded-xl text-sm font-semibold text-primary hover:bg-primary/5 transition-colors"
+              className="block px-3.5 py-2.5 rounded-xl text-xs font-bold text-primary hover:bg-primary/5 transition-colors"
             >
               Experience
             </a>
             <a
               href="#about"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="block px-3 py-2.5 rounded-xl text-sm font-semibold text-primary hover:bg-primary/5 transition-colors"
+              className="block px-3.5 py-2.5 rounded-xl text-xs font-bold text-primary hover:bg-primary/5 transition-colors"
             >
               Tentang Saya
             </a>
             <a
+              href="/ngl"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold bg-accent/15 text-primary border border-accent/30"
+            >
+              <span>Kirim Pesan</span>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+              </svg>
+            </a>
+            <a
               href={`mailto:${PROFILE.email}`}
               onClick={() => setIsMobileMenuOpen(false)}
-              className="block w-full text-center bg-primary hover:bg-accent text-background hover:text-primary px-4 py-2.5 rounded-xl text-sm font-semibold transition-all shadow-sm mt-2"
+              className="block w-full text-center bg-primary text-background hover:bg-accent hover:text-primary py-2.5 rounded-xl text-xs font-bold transition-all mt-1"
             >
               Hubungi Saya
             </a>
-            <a
-              href="/ngl"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="flex items-center justify-center gap-2 w-full text-center bg-primary hover:bg-accent text-background hover:text-primary px-4 py-2.5 rounded-xl text-sm font-semibold transition-all shadow-sm mt-2"
-            >
-              <span>Kirim Pesan</span>
-              <svg
-                className="w-4 h-4 text-accent animate-bounce"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
-                />
-              </svg>
-            </a>
           </div>
         )}
-      </nav>
+      </header>
 
       {/* Hero Section */}
       <section className="relative z-10 overflow-hidden py-10 sm:py-20 lg:py-24 px-4 sm:px-6">
@@ -1079,7 +1054,7 @@ export default function Home() {
           {/* Kiri: Identitas & Hak Cipta */}
           <div className="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
             <div>
-              <p className="font-bold text-sm sm:text-base text-primary leading-tight">
+              <p className="font-bold text-sm sm:text-base text-primary hover:text-accent leading-tight">
                 {PROFILE.nama}
               </p>
               <p className="text-primary/60 text-xs mt-0.5">

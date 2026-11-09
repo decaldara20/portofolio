@@ -7,7 +7,7 @@ import Reveal from "./Reveal"; // Ubah menjadi "../Reveal" jika file ini ada di 
 
 const PROFILE = {
   nama: "Kunto Rossindu Hidayattullah",
-  panggilan: "kunto",
+  panggilan: "Kunto",
   role: "Presiden BEM FATISDA UNS 2026",
   status: "Deep learning into Data Science & Student Leadership.",
   bioSingkat:
@@ -183,50 +183,66 @@ export default function Ngl() {
 
   return (
     <main className="relative isolate min-h-screen flex flex-col overflow-hidden bg-transparent text-primary">
-      {/* Navigasi Atas */}
-      <nav
-        aria-label="Navigasi utama"
-        className="sticky top-0 z-50 border-b border-second bg-primary backdrop-blur-md"
-      >
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-2 px-4 py-3.5 sm:px-6">
+      {/* Navigation (Floating Glass Island Navbar) */}
+      <header className="sticky top-3 sm:top-5 z-50 w-full px-4 sm:px-6 pointer-events-none">
+        <nav
+          aria-label="Navigasi Utama"
+          className="max-w-6xl mx-auto rounded-2xl sm:rounded-full bg-white/80 backdrop-blur-md border-2 border-primary/10 shadow-[0_8px_30px_rgba(16,31,10,0.06)] px-4 sm:px-6 py-2.5 sm:py-3 flex items-center justify-between gap-3 pointer-events-auto transition-all duration-300 hover:border-accent/50"
+        >
+          {/* Brand Logo & Foto Profil */}
           <Link
             href="/"
-            aria-label="Kunto, kembali ke portofolio"
-            className="group flex items-center gap-2.5 cursor-pointer shrink-0"
+            aria-label="Kembali ke beranda"
+            className="flex items-center gap-2.5 group shrink-0 select-none cursor-pointer"
           >
-            <div className="w-9 h-9 rounded-xl bg-accent text-primary flex items-center justify-center font-mono font-bold text-sm shadow-sm group-hover:bg-second group-hover:text-primary transition-colors">
-              {"kunto".charAt(0).toUpperCase()}
+            <div className="w-8 h-8 rounded-xl sm:rounded-full bg-primary text-background flex items-center justify-center overflow-hidden shadow-xs border border-primary/10 group-hover:border-accent transition-all duration-300">
+              <img
+                src="/profile.JPG"
+                alt="Profil"
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  if (!target.src.endsWith("/kunto.jpeg")) {
+                    target.src = "/kunto.jpeg";
+                  }
+                }}
+                className="w-full h-full object-cover"
+              />
             </div>
-            <span className="text-base sm:text-lg font-bold tracking-tight text-background whitespace-nowrap">
+            <span className="text-sm sm:text-base font-bold tracking-tight text-primary whitespace-nowrap">
               {PROFILE.panggilan}
-              <span className="text-accent hover:text-second">.portofolio</span>
+              <span className="text-primary group-hover:text-accent transition-colors">
+                .Rossindu
+              </span>
             </span>
           </Link>
 
-          <div className="flex items-center gap-2 sm:gap-3 text-sm font-medium shrink-0">
+          {/* Tombol Aksi di Kanan */}
+          <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
+            {/* Tombol Bagikan Link (Pill Badge Aksen) */}
             <button
               type="button"
               onClick={handleCopy}
-              aria-label="Bagikan Link Halaman"
-              className="cursor-pointer touch-manipulation inline-flex items-center justify-center gap-1.5 rounded-xl border border-white/15 bg-white/10 px-2.5 py-2 sm:px-3.5 sm:py-2 text-xs sm:text-sm font-semibold text-background shadow-sm transition-all duration-200 hover:border-second hover:bg-second hover:text-primary active:scale-95"
+              aria-label="Bagikan link halaman"
+              className="cursor-pointer touch-manipulation inline-flex items-center justify-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-accent/15 border border-accent/40 text-xs font-bold text-primary hover:bg-accent hover:border-accent transition-all duration-200 active:scale-95"
             >
-              <Icon name={copied ? "check" : "copy"} size={15} />
+              <Icon name={copied ? "check" : "copy"} size={14} />
               <span className="hidden xs:inline sm:inline">
                 {copied ? "Tersalin" : "Bagikan Link"}
               </span>
             </button>
 
+            {/* Tombol CTA Kembali ke Portofolio (Pil Solid Kontras) */}
             <Link
               href="/"
-              className="cursor-pointer touch-manipulation inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl bg-background px-3 py-2 sm:px-4 sm:py-2 text-xs sm:text-sm font-semibold text-primary shadow-sm transition-all duration-200 hover:bg-accent hover:text-background hover:-translate-y-0.5 active:scale-95 whitespace-nowrap"
+              className="cursor-pointer touch-manipulation inline-flex items-center justify-center gap-1.5 bg-primary hover:bg-accent text-background hover:text-primary px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs font-bold shadow-xs hover:shadow-[0_4px_16px_rgba(98,184,242,0.4)] transition-all duration-200 active:scale-95 whitespace-nowrap"
             >
               <span className="hidden sm:inline">Kembali ke Portofolio</span>
               <span className="sm:hidden">Portofolio</span>
-              <Icon name="arrow" size={15} />
+              <Icon name="arrow" size={14} />
             </Link>
           </div>
-        </div>
-      </nav>
+        </nav>
+      </header>
 
       {/* Konten Utama */}
       <section className="relative z-10 mx-auto grid w-full max-w-6xl flex-1 items-center gap-8 px-4 py-10 sm:px-6 sm:py-16 lg:grid-cols-12 lg:gap-12 lg:py-20">
@@ -434,15 +450,15 @@ export default function Ngl() {
       </section>
 
       {/* Footer Rapi dengan Ikon SVG Seragam */}
-      <footer className="relative z-10 w-full bg-primary text-background border-t-2 border-second mt-auto">
+      <footer className="relative z-10 w-full text-background mt-auto">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8 flex flex-col sm:flex-row items-center justify-between gap-5">
           {/* Kiri: Identitas & Hak Cipta */}
           <div className="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
             <div>
-              <p className="font-bold text-sm sm:text-base text-background leading-tight">
+              <p className="font-bold text-sm sm:text-base text-primary hover:text-accent leading-tight">
                 {PROFILE.nama}
               </p>
-              <p className="text-background/60 text-xs mt-0.5">
+              <p className="text-primary/60 text-xs mt-0.5">
                 © {new Date().getFullYear()} Data Science Universitas Sebelas Maret.
               </p>
             </div>
@@ -455,7 +471,7 @@ export default function Ngl() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
-              className="w-9 h-9 rounded-xl bg-white/10 hover:bg-accent text-background hover:text-primary border border-white/15 hover:border-accent flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5"
+              className="w-9 h-9 rounded-xl bg-primary hover:bg-accent text-background hover:text-primary border border-white/15 hover:border-accent flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                 <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
@@ -469,7 +485,7 @@ export default function Ngl() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
-              className="w-9 h-9 rounded-xl bg-white/10 hover:bg-accent text-background hover:text-primary border border-white/15 hover:border-accent flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5"
+              className="w-9 h-9 rounded-xl bg-primary hover:bg-accent text-background hover:text-primary border border-white/15 hover:border-accent flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5"
             >
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                 <path
@@ -485,7 +501,7 @@ export default function Ngl() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
-              className="w-9 h-9 rounded-xl bg-white/10 hover:bg-accent text-background hover:text-primary border border-white/15 hover:border-accent flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5"
+              className="w-9 h-9 rounded-xl bg-primary hover:bg-accent text-background hover:text-primary border border-white/15 hover:border-accent flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5"
             >
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
@@ -495,7 +511,7 @@ export default function Ngl() {
             <a
               href={`mailto:${PROFILE.email}`}
               aria-label="Email"
-              className="w-9 h-9 rounded-xl bg-white/10 hover:bg-accent text-background hover:text-primary border border-white/15 hover:border-accent flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5"
+              className="w-9 h-9 rounded-xl bg-primary hover:bg-accent text-background hover:text-primary border border-white/15 hover:border-accent flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                 <rect width="20" height="16" x="2" y="4" rx="2" />
