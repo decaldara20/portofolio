@@ -408,7 +408,7 @@ export default function Home() {
             className="flex items-center gap-2.5 group shrink-0 select-none"
           >
           <div className="w-8 h-8 rounded-xl sm:rounded-full bg-primary text-background flex items-center justify-center overflow-hidden shadow-xs border border-primary/10 group-hover:border-accent transition-all duration-300">
-              <img src="./profile.JPG" alt="Profil" className="w-full h-full object-cover rounded-xl border" />
+              <img src="./profile.jpg" alt="Profil" className="w-full h-full object-cover rounded-xl border" />
             </div>
             <span className="text-sm sm:text-base font-bold tracking-tight text-primary whitespace-nowrap">
               {PROFILE.panggilan}
