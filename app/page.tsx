@@ -563,7 +563,7 @@ export default function Home() {
               <span className="truncate">{PROFILE.status}</span>
             </div>
 
-            <h1 className="inline-block px-4 py-2 text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-background rounded-2xl bg-primary hover:text-second leading-tight mb-4 sm:mb-6 transition-colors">
+            <h1 className="inline-block px-4 py-2 text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-background rounded-2xl bg-primary hover:text-primary hover:bg-background/25 leading-tight mb-4 sm:mb-6 transition-colors">
               Kunto Rossindu H.
             </h1>
 

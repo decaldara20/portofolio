@@ -254,10 +254,10 @@ export default function Ngl() {
           </div>
 
           <div className="mb-4 sm:mb-6">
-            <h1 className="inline-block text-2xl sm:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight text-accent rounded-2xl hover:text-second transition-colors">
+            <h1 className="inline-block text-2xl sm:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight text-primary rounded-2xl hover:text-accent transition-colors">
               Sampaikan Sesuatu
             </h1>
-            <span className="block text-2xl sm:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight text-primary mt-1.5">
+            <span className="block text-2xl sm:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight text-accent hover:text-second mt-1.5">
               Secara Langsung.
             </span>
           </div>
