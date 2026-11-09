@@ -224,19 +224,19 @@ const dokumentasi: DokumentasiItem[] = [
   {
     id: 14,
     deskripsi: "Kunjungan Internal BEM FATISDA x Himakesja UNS",
-    gambar: "/kunin25.JPG",
+    gambar: "/kunin25.jpg",
     year: 2025,
   },
   {
     id: 15,
     deskripsi: "Staff Konsumsi PKKMB FATISDA UNS",
-    gambar: "/pkkmb25.JPG",
+    gambar: "/pkkmb25.jpg",
     year: 2025,
   },
   {
     id: 16,
     deskripsi: "Kunjungan Eksternal BEM FATISDA UNS x HMIF UII",
-    gambar: "/kunex25.JPG",
+    gambar: "/kunex25.jpg",
     year: 2025,
   }
 ];
