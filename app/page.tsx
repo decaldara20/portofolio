@@ -108,7 +108,7 @@ function Icon({
 // ==========================================
 const PROFILE = {
   nama: "Kunto Rossindu Hidayattullah",
-  panggilan: "kunto",
+  panggilan: "Kunto",
   role: "Presiden BEM FATISDA UNS 2026",
   status: "Deep learning into Data Science & Student Leadership.",
   bioSingkat:
@@ -402,7 +402,7 @@ export default function Home() {
           <a href="#" className="flex items-center gap-2.5 group shrink-0">
             <span className="text-base sm:text-lg font-bold tracking-tight text-primary whitespace-nowrap">
               {PROFILE.panggilan}
-              <span className="text-accent hover:text-second">.portofolio</span>
+              <span className="text-accent hover:text-primary">.Portfolio</span>
             </span>
           </a>
 
