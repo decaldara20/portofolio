@@ -33,6 +33,76 @@ interface DokumentasiItem {
   year?: number;
 }
 
+function Icon({
+  name,
+  size = 20,
+}: {
+  name:
+    | "arrow"
+    | "check"
+    | "copy"
+    | "link"
+    | "lock"
+    | "message"
+    | "send"
+    | "spark"
+    | "shield";
+  size?: number;
+}) {
+  const paths = {
+    arrow: <path d="m5 12 14 0m-5-5 5 5-5 5" />,
+    check: <path d="m5 12 4 4L19 6" />,
+    copy: (
+      <>
+        <rect x="8" y="8" width="11" height="11" rx="2" />
+        <path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" />
+      </>
+    ),
+    link: (
+      <>
+        <path d="M10 13a5 5 0 0 0 7.1.1l2-2a5 5 0 0 0-7.1-7.1l-1.1 1.1" />
+        <path d="M14 11a5 5 0 0 0-7.1-.1l-2 2A5 5 0 0 0 12 20l1.1-1.1" />
+      </>
+    ),
+    lock: (
+      <>
+        <rect x="5" y="10" width="14" height="10" rx="2" />
+        <path d="M8 10V7a4 4 0 0 1 8 0v3" />
+      </>
+    ),
+    message: (
+      <>
+        <path d="M20 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h9a4 4 0 0 1 4 4Z" />
+        <path d="M8 9h8M8 13h5" />
+      </>
+    ),
+    send: <path d="m22 2-7 20-4-9-9-4Zm0 0L11 13" />,
+    spark: (
+      <>
+        <path d="m12 3 .8 2.2A6 6 0 0 0 16.5 9l2.2.8-2.2.8a6 6 0 0 0-3.7 3.7L12 16.5l-.8-2.2a6 6 0 0 0-3.7-3.7l-2.2-.8L7.5 9a6 6 0 0 0 3.7-3.8Z" />
+        <path d="m19 16 .4 1.1a3 3 0 0 0 1.5 1.5l1.1.4-1.1.4a3 3 0 0 0-1.5 1.5L19 22l-.4-1.1a3 3 0 0 0-1.5-1.5L16 19l1.1-.4a3 3 0 0 0 1.5-1.5Z" />
+      </>
+    ),
+    shield: <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />,
+  };
+
+  return (
+    <svg
+      aria-hidden="true"
+      fill="none"
+      height={size}
+      viewBox="0 0 24 24"
+      width={size}
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="1.8"
+    >
+      {paths[name]}
+    </svg>
+  );
+}
+
 // ==========================================
 // DATA STATIS PORTOFOLIO (MUDAH DIEDIT)
 // ==========================================
@@ -87,13 +157,13 @@ const dokumentasi: DokumentasiItem[] = [
   },
   {
     id: 3,
-    deskripsi: "Fatisda Student Developer",
+    deskripsi: "CEO Fatisda Student Developer",
     gambar: "/fsd.jpeg",
     year: 2026,
   },
   {
     id: 4,
-    deskripsi: "PKKMB FATISDA UNS",
+    deskripsi: "Steering Committee PKKMB FATISDA UNS",
     gambar: "/pkkmb.jpeg",
     year: 2026,
   },
@@ -105,19 +175,19 @@ const dokumentasi: DokumentasiItem[] = [
   },
   {
     id: 6,
-    deskripsi: "PINGFEST",
+    deskripsi: "Staff Fundraising PINGFEST",
     gambar: "/pingfest25.jpg",
     year: 2025,
   },
   {
     id: 7,
-    deskripsi: "Kunjungan Internal BEM FATISDA x BEM SV",
+    deskripsi: "Kunjungan Internal BEM FATISDA x BEM SV UNS",
     gambar: "/bemsv.JPG",
     year: 2026,
   },
   {
     id: 8,
-    deskripsi: "Kunjungan Eksternal BEM FATISDA x HIMAKOM UGM",
+    deskripsi: "Kunjungan Eksternal BEM FATISDA UNS x HIMAKOM UGM",
     gambar: "/kunex.JPG",
     year: 2026,
   },
@@ -139,6 +209,18 @@ const dokumentasi: DokumentasiItem[] = [
     gambar: "/bukber.JPG",
     year: 2026,
   },
+  {
+    id: 12,
+    deskripsi: "Kakak Asuh BEM FATISDA UNS",
+    gambar: "/kasuh.jpeg",
+    year: 2026,
+  },
+  {
+    id: 13,
+    deskripsi: "Sosialisasi BEM FATISDA di PKKMB FATISDA UNS",
+    gambar: "/sosialisasi.JPG",
+    year: 2026,
+  }
 ];
 
 const PROJECTS_DATA: Project[] = [
@@ -315,12 +397,9 @@ export default function Home() {
       <AnimatedBackground />
 
       {/* Navigation (Responsif Mobile & Desktop) */}
-      <nav className="sticky top-0 z-50 backdrop-blur-md bg-primary border-b border-second">
+      <nav className="relative z-10 w-full bg-primary text-background border-b-2 border-second mt-auto">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between gap-2">
           <a href="#" className="flex items-center gap-2.5 group shrink-0">
-            <div className="w-9 h-9 rounded-xl bg-accent text-primary flex items-center justify-center font-mono font-bold text-sm shadow-sm group-hover:bg-second group-hover:text-primary transition-colors">
-              {"kunto".charAt(0).toUpperCase()}
-            </div>
             <span className="text-base sm:text-lg font-bold tracking-tight text-background whitespace-nowrap">
               {PROFILE.panggilan}
               <span className="text-accent hover:text-second">.portofolio</span>
@@ -372,7 +451,7 @@ export default function Home() {
             <li>
               <a
                 href={`mailto:${PROFILE.email}`}
-                className="bg-background hover:bg-accent text-primary hover:text-background px-4 py-2 rounded-lg text-sm font-semibold transition-all shadow-sm whitespace-nowrap"
+                className="bg-background hover:bg-accent text-primary hover:text-primary px-4 py-2 rounded-lg text-sm font-semibold transition-all shadow-sm whitespace-nowrap"
               >
                 Hubungi Saya
               </a>
@@ -467,10 +546,10 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative z-10 overflow-hidden py-10 sm:py-20 lg:py-24 px-4 sm:px-6 border-b border-primary/10">
+      <section className="relative z-10 overflow-hidden py-10 sm:py-20 lg:py-24 px-4 sm:px-6">
         {/* Dekorasi Latar Belakang SaaS */}
-        <div className="absolute -top-24 -right-24 w-72 sm:w-96 h-72 sm:h-96 bg-accent/15 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-24 -left-24 w-72 sm:w-96 h-72 sm:h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -top-24 -right-24 w-72 sm:w-96 h-72 sm:h-96 pointer-events-none" />
+        <div className="absolute -bottom-24 -left-24 w-72 sm:w-96 h-72 sm:h-96 pointer-events-none" />
 
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center relative z-10">
           {/* Kolom Kiri: Teks Utama */}
@@ -559,7 +638,7 @@ export default function Home() {
       </section>
 
       {/* Dokumentasi Section */}
-      <section className="relative z-10 py-14 sm:py-20 bg-background border-t border-second overflow-hidden">
+      <section className="relative z-10 py-14 sm:py-20 overflow-hidden">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           {/* Header & Navigasi Tombol Geser */}
           <Reveal>
@@ -683,7 +762,7 @@ export default function Home() {
       {/* Projects Section */}
       <section
         id="projects"
-        className="relative z-10 py-14 sm:py-20 px-4 sm:px-6 bg-transparent border-t border-primary/10"
+        className="relative z-10 py-14 sm:py-20 px-4 sm:px-6 bg-transparent"
       >
         <div className="max-w-6xl mx-auto">
           <Reveal>
@@ -994,47 +1073,74 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="relative z-10 bg-primary text-background py-8 sm:py-10 mt-auto border-t border-second">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="text-center sm:text-left">
-            <p className="font-bold text-sm sm:text-base">{PROFILE.nama}</p>
-            <p className="text-background/60 text-xs mt-1">
-              © {new Date().getFullYear()} Data Science Universitas Sebelas
-              Maret.
-            </p>
+      {/* Footer Rapi dengan Ikon SVG Seragam */}
+      <footer className="relative z-10 w-full bg-primary text-background border-t-2 border-second mt-auto">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8 flex flex-col sm:flex-row items-center justify-between gap-5">
+          {/* Kiri: Identitas & Hak Cipta */}
+          <div className="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
+            <div>
+              <p className="font-bold text-sm sm:text-base text-background leading-tight">
+                {PROFILE.nama}
+              </p>
+              <p className="text-background/60 text-xs mt-0.5">
+                © {new Date().getFullYear()} Data Science Universitas Sebelas Maret.
+              </p>
+            </div>
           </div>
 
-          <div className="flex items-center gap-5 text-sm font-medium">
+          {/* Kanan: Tombol Sosial Media SVG yang Rapi & Kontras */}
+          <div className="flex items-center gap-2.5">
             <a
               href={PROFILE.instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-background/80 hover:text-accent transition-colors"
+              aria-label="Instagram"
+              className="w-9 h-9 rounded-xl bg-white/10 hover:bg-accent text-background hover:text-primary border border-white/15 hover:border-accent flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5"
             >
-              <img src="/ig.png" alt="Instagram" className="w-5 h-5" />
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+              </svg>
             </a>
+
             <a
               href={PROFILE.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-background/80 hover:text-accent transition-colors"
+              aria-label="GitHub"
+              className="w-9 h-9 rounded-xl bg-white/10 hover:bg-accent text-background hover:text-primary border border-white/15 hover:border-accent flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5"
             >
-              <img src="/github.png" alt="GitHub" className="w-5 h-5" />
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                />
+              </svg>
             </a>
+
             <a
               href={PROFILE.linkedinUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-background/80 hover:text-accent transition-colors"
+              aria-label="LinkedIn"
+              className="w-9 h-9 rounded-xl bg-white/10 hover:bg-accent text-background hover:text-primary border border-white/15 hover:border-accent flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5"
             >
-              <img src="/linkedin.png" alt="LinkedIn" className="w-5 h-5" />
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg>
             </a>
+
             <a
               href={`mailto:${PROFILE.email}`}
-              className="text-background/80 hover:text-accent transition-colors"
+              aria-label="Email"
+              className="w-9 h-9 rounded-xl bg-white/10 hover:bg-accent text-background hover:text-primary border border-white/15 hover:border-accent flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5"
             >
-              <img src="/email.png" alt="Email" className="w-5 h-5" />
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                <rect width="20" height="16" x="2" y="4" rx="2" />
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+              </svg>
             </a>
           </div>
         </div>

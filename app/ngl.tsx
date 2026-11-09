@@ -3,7 +3,7 @@
 import { useEffect, useState, type FormEvent } from "react";
 import Link from "next/link";
 import { getSupabaseClient } from "../lib/supabase";
-import AnimatedBackground from "./AnimatedBackground"; // Ubah menjadi "../AnimatedBackground" jika file ini ada di app/ngl/page.tsx
+import Reveal from "./Reveal"; // Ubah menjadi "../Reveal" jika file ini ada di app/ngl/page.tsx
 
 const PROFILE = {
   nama: "Kunto Rossindu Hidayattullah",
@@ -104,7 +104,6 @@ export default function Ngl() {
   const [isSending, setIsSending] = useState(false);
   const [formError, setFormError] = useState("");
 
-  // Hanya mengambil jumlah pesan (tanpa mengunduh isi pesan ke browser publik)
   useEffect(() => {
     let isActive = true;
 
@@ -179,29 +178,21 @@ export default function Ngl() {
       );
     } finally {
       setIsSending(false);
-    }
+    };
   };
 
   return (
-    <main className="relative isolate min-h-screen flex flex-col overflow-x-hidden bg-background text-foreground">
-      {/* Animasi Latar Belakang Selaras Halaman Utama */}
-      <AnimatedBackground />
-
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[520px] sm:h-[680px] bg-[radial-gradient(ellipse_at_75%_10%,color-mix(in_srgb,var(--accent)_18%,transparent),transparent_42%),linear-gradient(to_bottom,color-mix(in_srgb,var(--primary)_4%,var(--background)),var(--background))]"
-      />
-
-      {/* Navigasi Atas (Responsif Mobile & Desktop) */}
+    <main className="relative isolate min-h-screen flex flex-col overflow-hidden bg-transparent text-primary">
+      {/* Navigasi Atas */}
       <nav
         aria-label="Navigasi utama"
-        className="sticky top-0 z-50 border-b border-primary/10 bg-primary backdrop-blur-md"
+        className="sticky top-0 z-50 border-b border-second bg-primary backdrop-blur-md"
       >
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-2 px-4 py-3 sm:px-6 sm:py-3.5">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-2 px-4 py-3.5 sm:px-6">
           <Link
             href="/"
             aria-label="Kunto, kembali ke portofolio"
-            className="group flex items-center gap-2 sm:gap-2.5 cursor-pointer shrink-0"
+            className="group flex items-center gap-2.5 cursor-pointer shrink-0"
           >
             <div className="w-9 h-9 rounded-xl bg-accent text-primary flex items-center justify-center font-mono font-bold text-sm shadow-sm group-hover:bg-second group-hover:text-primary transition-colors">
               {"kunto".charAt(0).toUpperCase()}
@@ -217,7 +208,7 @@ export default function Ngl() {
               type="button"
               onClick={handleCopy}
               aria-label="Bagikan Link Halaman"
-              className="cursor-pointer touch-manipulation inline-flex items-center justify-center gap-1.5 rounded-xl border border-primary/15 bg-white/85 px-2.5 py-2 sm:px-3 sm:py-2 text-xs sm:text-sm font-semibold text-primary shadow-sm transition-all duration-200 hover:border-accent hover:bg-second active:scale-95"
+              className="cursor-pointer touch-manipulation inline-flex items-center justify-center gap-1.5 rounded-xl border border-white/15 bg-white/10 px-2.5 py-2 sm:px-3.5 sm:py-2 text-xs sm:text-sm font-semibold text-background shadow-sm transition-all duration-200 hover:border-second hover:bg-second hover:text-primary active:scale-95"
             >
               <Icon name={copied ? "check" : "copy"} size={15} />
               <span className="hidden xs:inline sm:inline">
@@ -227,7 +218,7 @@ export default function Ngl() {
 
             <Link
               href="/"
-              className="cursor-pointer touch-manipulation inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl bg-background px-3 py-2 sm:px-4 sm:py-2.5 text-xs sm:text-sm font-semibold text-primary shadow-sm transition-all duration-200 hover:bg-second hover:text-primary hover:-translate-y-0.5 active:scale-95 whitespace-nowrap"
+              className="cursor-pointer touch-manipulation inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl bg-background px-3 py-2 sm:px-4 sm:py-2 text-xs sm:text-sm font-semibold text-primary shadow-sm transition-all duration-200 hover:bg-accent hover:text-background hover:-translate-y-0.5 active:scale-95 whitespace-nowrap"
             >
               <span className="hidden sm:inline">Kembali ke Portofolio</span>
               <span className="sm:hidden">Portofolio</span>
@@ -238,74 +229,81 @@ export default function Ngl() {
       </nav>
 
       {/* Konten Utama */}
-      <section className="relative z-10 mx-auto grid w-full max-w-6xl flex-1 items-center gap-8 px-4 py-8 sm:px-6 sm:py-16 lg:grid-cols-12 lg:gap-12 lg:py-20">
+      <section className="relative z-10 mx-auto grid w-full max-w-6xl flex-1 items-center gap-8 px-4 py-10 sm:px-6 sm:py-16 lg:grid-cols-12 lg:gap-12 lg:py-20">
         {/* Kolom Kiri: Informasi & Jaminan Privasi */}
-        <div className="lg:col-span-6 text-left">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent/10 border border-accent/30 text-primary text-[11px] sm:text-xs font-semibold mb-4 sm:mb-6 max-w-full">
+        <Reveal className="lg:col-span-6 text-left">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-primary/15 text-primary text-[11px] sm:text-xs font-bold uppercase tracking-wider mb-5 shadow-xs">
             <span className="w-2 h-2 rounded-full bg-accent animate-pulse shrink-0" />
-            <span className="truncate">Secret & Direct Message Box</span>
+            <span className="truncate">Secret &amp; Direct Message Box</span>
           </div>
 
-          <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight text-primary">
-            Sampaikan Sesuatu Secara Langsung.
-          </h1>
+          <div className="mb-4 sm:mb-6">
+            <h1 className="inline-block text-2xl sm:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight text-accent rounded-2xl hover:text-second transition-colors">
+              Sampaikan Sesuatu
+            </h1>
+            <span className="block text-2xl sm:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight text-primary mt-1.5">
+              Secara Langsung.
+            </span>
+          </div>
 
-          <p className="mt-3 sm:mt-5 max-w-lg text-sm sm:text-lg leading-relaxed text-foreground/75">
+          <p className="mt-3 sm:mt-4 max-w-lg text-sm sm:text-lg leading-relaxed text-primary/75">
             Tinggalkan pesan, masukan, apresiasi, atau ajakan kolaborasi.
           </p>
 
-          {/* Kartu Jaminan Privasi (Rapi tanpa ruang kosong di Mobile & Desktop) */}
-          <div className="mt-6 sm:mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 max-w-lg">
-            <div className="group rounded-2xl border border-primary/10 bg-white/85 backdrop-blur-sm p-3.5 sm:p-4 shadow-sm transition-all duration-300 hover:border-accent hover:shadow-md flex items-start gap-2.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 shrink-0" />
-              <p className="text-xs leading-relaxed text-foreground/70">
+          {/* Kartu Jaminan Privasi */}
+          <div className="mt-6 sm:mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4 max-w-lg">
+            <div className="group rounded-2xl border-2 border-primary/10 bg-white/85 backdrop-blur-md p-4 shadow-sm transition-all duration-300 hover:border-accent hover:shadow-[0_10px_25px_-10px_rgba(98,184,242,0.4)] hover:-translate-y-0.5 flex items-start gap-2.5">
+              <span className="w-2 h-2 rounded-full bg-accent mt-1.5 shrink-0" />
+              <p className="text-xs leading-relaxed text-foreground/80 font-medium">
                 Pesan hanya masuk ke dashboard pribadi dan tidak dapat dilihat
                 pengunjung lain.
               </p>
             </div>
 
-            <div className="group rounded-2xl border border-primary/10 bg-white/85 backdrop-blur-sm p-3.5 sm:p-4 shadow-sm transition-all duration-300 hover:border-accent hover:shadow-md flex items-start gap-2.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0" />
-              <p className="text-xs leading-relaxed text-foreground/70">
-                Setiap masukan dan pesan sebagai bahan evaluasi dan kolaborasi.{" "}
+            <div className="group rounded-2xl border-2 border-primary/10 bg-white/85 backdrop-blur-md p-4 shadow-sm transition-all duration-300 hover:border-accent hover:shadow-[0_10px_25px_-10px_rgba(98,184,242,0.4)] hover:-translate-y-0.5 flex items-start gap-2.5">
+              <span className="w-2 h-2 rounded-full bg-primary mt-1.5 shrink-0" />
+              <p className="text-xs leading-relaxed text-foreground/80 font-medium">
+                Setiap masukan dan pesan menjadi bahan evaluasi serta kolaborasi.
               </p>
             </div>
           </div>
-        </div>
+        </Reveal>
 
         {/* Kolom Kanan: Form Interaktif */}
-        <div className="lg:col-span-6 w-full">
+        <Reveal delay={180} className="lg:col-span-6 w-full">
           <div className="relative">
-            <div className="absolute -inset-2 rounded-3xl bg-gradient-to-tr from-primary/20 via-accent/25 to-transparent blur-xl pointer-events-none" />
+            <div className="absolute -inset-2 rounded-3xl bg-gradient-to-tr from-primary/15 via-accent/25 to-second/20 blur-xl pointer-events-none" />
 
             {sent ? (
               /* Tampilan Sukses Terkirim */
-              <div className="relative rounded-2xl border border-accent/50 bg-white/95 backdrop-blur-md p-6 sm:p-10 text-center shadow-xl">
-                <div className="mx-auto mb-4 sm:mb-5 flex size-14 sm:size-16 items-center justify-center rounded-2xl bg-primary text-accent shadow-lg">
-                  <Icon name="check" size={28} />
-                </div>
-                <h2 className="text-xl sm:text-2xl font-extrabold text-primary">
-                  Pesan Berhasil Terkirim!
-                </h2>
-                <p className="mt-2 text-xs sm:text-base text-foreground/70 max-w-md mx-auto leading-relaxed">
-                  Terima kasih sudah menyempatkan waktu. Pesanmu telah tersimpan
-                  di ruang baca pribadi Kunto.
-                </p>
-                <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3">
-                  <button
-                    type="button"
-                    onClick={() => setSent(false)}
-                    className="cursor-pointer touch-manipulation w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-background shadow-md transition-all duration-200 hover:bg-accent hover:text-primary hover:-translate-y-0.5 active:scale-95"
-                  >
-                    <Icon name="message" size={17} />
-                    <span>Kirim Pesan Lainnya</span>
-                  </button>
-                  <Link
-                    href="/"
-                    className="cursor-pointer touch-manipulation w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-primary/15 bg-background px-6 py-3 text-sm font-semibold text-primary transition-all duration-200 hover:border-accent active:scale-95"
-                  >
-                    <span>Kembali ke Beranda</span>
-                  </Link>
+              <div className="relative rounded-2xl border-2 border-accent bg-white/90 backdrop-blur-md overflow-hidden shadow-xl">
+                <div className="h-1.5 bg-gradient-to-r from-primary via-accent to-second" />
+                <div className="p-6 sm:p-10 text-center">
+                  <div className="mx-auto mb-4 sm:mb-5 flex size-14 sm:size-16 items-center justify-center rounded-2xl bg-primary text-second border border-second shadow-lg">
+                    <Icon name="check" size={28} />
+                  </div>
+                  <h2 className="text-xl sm:text-2xl font-extrabold text-primary">
+                    Pesan Berhasil Terkirim!
+                  </h2>
+                  <p className="mt-2 text-xs sm:text-base text-foreground/75 max-w-md mx-auto leading-relaxed">
+                    Terima kasih sudah menyampaikan pesan
+                  </p>
+                  <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3">
+                    <button
+                      type="button"
+                      onClick={() => setSent(false)}
+                      className="cursor-pointer touch-manipulation w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-primary border-2 border-primary px-6 py-3 text-sm font-bold text-background shadow-md transition-all duration-200 hover:bg-accent hover:text-primary hover:border-accent hover:-translate-y-0.5 active:scale-95"
+                    >
+                      <Icon name="message" size={17} />
+                      <span>Kirim Pesan Lainnya</span>
+                    </button>
+                    <Link
+                      href="/"
+                      className="cursor-pointer touch-manipulation w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border-2 border-primary/15 bg-background px-6 py-3 text-sm font-bold text-primary transition-all duration-200 hover:border-accent active:scale-95"
+                    >
+                      <span>Kembali ke Beranda</span>
+                    </Link>
+                  </div>
                 </div>
               </div>
             ) : (
@@ -313,165 +311,196 @@ export default function Ngl() {
               <form
                 id="tulis-pesan"
                 onSubmit={handleSubmit}
-                className="relative rounded-2xl border border-primary/10 bg-white/95 backdrop-blur-md p-5 sm:p-8 shadow-xl transition-all"
+                className="relative rounded-2xl border-2 border-primary/10 hover:border-accent/60 bg-white/85 backdrop-blur-md overflow-hidden shadow-xl transition-all duration-300"
               >
-                <div className="mb-5 flex items-center justify-between gap-2">
-                  <h2 className="text-base sm:text-lg font-bold text-primary">
-                    Kirim Pesan Baru
-                  </h2>
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-primary px-3 py-1 text-[11px] font-mono font-semibold text-background shrink-0">
-                    Private
-                  </span>
-                </div>
+                <div className="h-1.5 bg-gradient-to-r from-primary via-accent to-second" />
 
-                {/* Pilihan Mode Anonim / Bernama (Tab Interaktif) */}
-                <div className="mb-5 grid grid-cols-2 gap-1.5 sm:gap-2 rounded-xl bg-background p-1.5 border border-primary/10">
-                  <button
-                    type="button"
-                    onClick={() => setAnonymous(true)}
-                    className={`cursor-pointer touch-manipulation flex items-center justify-center gap-2 rounded-lg py-2.5 text-xs sm:text-sm font-semibold transition-all duration-200 active:scale-[0.98] ${
-                      anonymous
-                        ? "bg-accent text-background shadow-sm"
-                        : "text-foreground/65 hover:text-primary"
-                    }`}
-                  >
-                    <span>Anonim</span>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setAnonymous(false)}
-                    className={`cursor-pointer touch-manipulation flex items-center justify-center gap-2 rounded-lg py-2.5 text-xs sm:text-sm font-semibold transition-all duration-200 active:scale-[0.98] ${
-                      !anonymous
-                        ? "bg-accent text-background shadow-sm"
-                        : "text-foreground/65 hover:text-primary"
-                    }`}
-                  >
-                    <span>Bernama</span>
-                  </button>
-                </div>
-
-                {!anonymous && (
-                  <label className="mb-5 block text-xs sm:text-sm font-bold text-primary">
-                    Nama atau Inisial Kamu
-                    <input
-                      value={name}
-                      onChange={(event) => setName(event.target.value)}
-                      placeholder="Contoh: Ucup"
-                      maxLength={40}
-                      className="mt-2 w-full rounded-xl border border-primary/15 bg-background px-3.5 py-2.5 sm:px-4 sm:py-3 text-base sm:text-sm font-normal text-foreground outline-none transition-all duration-200 focus:border-accent focus:bg-white focus:ring-4 focus:ring-accent/20"
-                    />
-                  </label>
-                )}
-
-                {/* Quick Prompts / Topik Cepat */}
-                <div className="mb-4">
-                  <span className="block text-[11px] font-mono uppercase tracking-wider text-foreground/50 mb-2">
-                    Pesan Cepat (Klik untuk Menambahkan):
-                  </span>
-                  <div className="flex flex-col sm:flex-row sm:flex-wrap gap-1.5">
-                    {QUICK_PROMPTS.map((item) => (
-                      <button
-                        key={item}
-                        type="button"
-                        onClick={() => handlePromptClick(item)}
-                        className="cursor-pointer touch-manipulation text-left rounded-lg border border-primary/10 bg-background px-3 py-2 sm:px-2.5 sm:py-1.5 text-xs font-medium text-primary leading-snug transition-all duration-200 hover:border-accent hover:bg-accent/15 sm:hover:-translate-y-0.5 active:scale-[0.98]"
-                      >
-                        + {item}
-                      </button>
-                    ))}
+                <div className="p-5 sm:p-8">
+                  <div className="mb-5 flex items-center justify-between gap-2">
+                    <h2 className="text-base sm:text-lg font-extrabold text-primary">
+                      Kirim Pesan Baru
+                    </h2>
+                    <span className="inline-flex items-center gap-1.5 rounded-md bg-primary border border-second/40 px-2.5 py-1 text-[11px] font-mono font-semibold text-second shrink-0">
+                      Private
+                    </span>
                   </div>
-                </div>
 
-                <label className="block text-xs sm:text-sm font-bold text-primary">
-                  Isi Pesan
-                  <span className="relative mt-2 block">
-                    <textarea
-                      value={message}
-                      onChange={(event) => setMessage(event.target.value)}
-                      placeholder="Tulis pesan, saran, atau hal yang ingin kamu sampaikan di sini..."
-                      maxLength={400}
-                      rows={4}
-                      required
-                      className="w-full resize-y rounded-xl border border-primary/15 bg-background px-3.5 py-2.5 pb-8 sm:px-4 sm:py-3 sm:pb-9 text-base sm:text-sm font-normal leading-relaxed text-foreground outline-none transition-all duration-200 placeholder:text-foreground/40 focus:border-accent focus:bg-white focus:ring-4 focus:ring-accent/20"
-                    />
-                    <span
-                      className={`absolute bottom-2.5 right-3 sm:bottom-3 sm:right-3.5 text-[11px] sm:text-xs font-mono tabular-nums ${
-                        message.length > 360
-                          ? "text-amber-600 font-bold"
-                          : "text-foreground/45"
+                  {/* Pilihan Mode Anonim / Bernama */}
+                  <div className="mb-5 grid grid-cols-2 gap-1.5 sm:gap-2 rounded-xl bg-background p-1.5 border border-primary/10">
+                    <button
+                      type="button"
+                      onClick={() => setAnonymous(true)}
+                      className={`cursor-pointer touch-manipulation flex items-center justify-center gap-2 rounded-lg py-2.5 text-xs sm:text-sm font-bold transition-all duration-200 active:scale-[0.98] ${
+                        anonymous
+                          ? "bg-primary text-background shadow-sm"
+                          : "text-foreground/65 hover:text-primary hover:bg-primary/5"
                       }`}
                     >
-                      {message.length}/400
+                      <span>Anonim</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setAnonymous(false)}
+                      className={`cursor-pointer touch-manipulation flex items-center justify-center gap-2 rounded-lg py-2.5 text-xs sm:text-sm font-bold transition-all duration-200 active:scale-[0.98] ${
+                        !anonymous
+                          ? "bg-primary text-background shadow-sm"
+                          : "text-foreground/65 hover:text-primary hover:bg-primary/5"
+                      }`}
+                    >
+                      <span>Bernama</span>
+                    </button>
+                  </div>
+
+                  {!anonymous && (
+                    <label className="mb-5 block text-xs sm:text-sm font-bold text-primary">
+                      Nama atau Inisial Kamu
+                      <input
+                        value={name}
+                        onChange={(event) => setName(event.target.value)}
+                        placeholder="Contoh: Ucup"
+                        maxLength={40}
+                        className="mt-2 w-full rounded-xl border-2 border-primary/15 bg-background px-3.5 py-2.5 sm:px-4 sm:py-3 text-base sm:text-sm font-normal text-foreground outline-none transition-all duration-200 focus:border-accent focus:bg-white focus:ring-4 focus:ring-accent/20"
+                      />
+                    </label>
+                  )}
+
+                  {/* Quick Prompts */}
+                  <div className="mb-5">
+                    <span className="block text-[11px] font-mono font-bold uppercase tracking-wider text-foreground/50 mb-2">
+                      Pesan Cepat (Klik untuk Menambahkan):
                     </span>
-                  </span>
-                </label>
+                    <div className="flex flex-col sm:flex-row sm:flex-wrap gap-1.5">
+                      {QUICK_PROMPTS.map((item) => (
+                        <button
+                          key={item}
+                          type="button"
+                          onClick={() => handlePromptClick(item)}
+                          className="cursor-pointer touch-manipulation text-left rounded-lg border border-accent/40 bg-accent/15 px-3 py-2 sm:px-2.5 sm:py-1.5 text-xs font-bold text-primary leading-snug transition-all duration-200 hover:bg-primary hover:text-background hover:border-primary sm:hover:-translate-y-0.5 active:scale-[0.98]"
+                        >
+                          + {item}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
 
-                {formError && (
-                  <p
-                    role="alert"
-                    className="mt-4 rounded-xl border border-red-200 bg-red-50 px-3.5 py-2.5 text-xs sm:text-sm font-medium text-red-800"
+                  <label className="block text-xs sm:text-sm font-bold text-primary">
+                    Isi Pesan
+                    <span className="relative mt-2 block">
+                      <textarea
+                        value={message}
+                        onChange={(event) => setMessage(event.target.value)}
+                        placeholder="Tulis pesan, saran, atau hal yang ingin kamu sampaikan di sini..."
+                        maxLength={400}
+                        rows={4}
+                        required
+                        className="w-full resize-y rounded-xl border-2 border-primary/15 bg-background px-3.5 py-2.5 pb-8 sm:px-4 sm:py-3 sm:pb-9 text-base sm:text-sm font-normal leading-relaxed text-foreground outline-none transition-all duration-200 placeholder:text-foreground/40 focus:border-accent focus:bg-white focus:ring-4 focus:ring-accent/20"
+                      />
+                      <span
+                        className={`absolute bottom-2.5 right-3 sm:bottom-3 sm:right-3.5 text-[11px] sm:text-xs font-mono tabular-nums ${
+                          message.length > 360
+                            ? "text-amber-600 font-bold"
+                            : "text-foreground/45"
+                        }`}
+                      >
+                        {message.length}/400
+                      </span>
+                    </span>
+                  </label>
+
+                  {formError && (
+                    <p
+                      role="alert"
+                      className="mt-4 rounded-xl border border-red-200 bg-red-50 px-3.5 py-2.5 text-xs sm:text-sm font-medium text-red-800"
+                    >
+                      {formError}
+                    </p>
+                  )}
+
+                  <button
+                    type="submit"
+                    disabled={isSending || !message.trim()}
+                    className="cursor-pointer touch-manipulation mt-5 sm:mt-6 inline-flex w-full items-center justify-center gap-2.5 rounded-xl bg-primary border-2 border-primary px-6 py-3.5 text-sm font-bold text-background shadow-lg shadow-primary/15 transition-all duration-200 hover:bg-accent hover:text-primary hover:border-accent hover:shadow-[0_8px_20px_-6px_rgba(98,184,242,0.5)] hover:-translate-y-0.5 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0"
                   >
-                    {formError}
-                  </p>
-                )}
-
-                <button
-                  type="submit"
-                  disabled={isSending || !message.trim()}
-                  className="cursor-pointer touch-manipulation mt-5 sm:mt-6 inline-flex w-full items-center justify-center gap-2.5 rounded-xl bg-slate-950 px-6 py-3.5 text-sm font-bold text-background shadow-lg shadow-primary/15 transition-all duration-200 hover:bg-accent hover:text-primary hover:-translate-y-0.5 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0"
-                >
-                  <span>
-                    {isSending ? "Mengirim Pesan..." : "Kirim Pesan Sekarang"}
-                  </span>
-                  <Icon name="send" size={18} />
-                </button>
+                    <span>
+                      {isSending ? "Mengirim Pesan..." : "Kirim Pesan Sekarang"}
+                    </span>
+                    <Icon name="send" size={18} />
+                  </button>
+                </div>
               </form>
             )}
           </div>
-        </div>
+        </Reveal>
       </section>
 
-      {/* Footer */}
-      <footer className="relative z-10 bg-primary text-background py-8 sm:py-10 mt-auto">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="text-center sm:text-left">
-            <p className="font-bold text-sm sm:text-base">{PROFILE.nama}</p>
-            <p className="text-background/60 text-xs mt-1">
-              © {new Date().getFullYear()} Data Science Universitas Sebelas
-              Maret.
-            </p>
+      {/* Footer Rapi dengan Ikon SVG Seragam */}
+      <footer className="relative z-10 w-full bg-primary text-background border-t-2 border-second mt-auto">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8 flex flex-col sm:flex-row items-center justify-between gap-5">
+          {/* Kiri: Identitas & Hak Cipta */}
+          <div className="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
+            <div>
+              <p className="font-bold text-sm sm:text-base text-background leading-tight">
+                {PROFILE.nama}
+              </p>
+              <p className="text-background/60 text-xs mt-0.5">
+                © {new Date().getFullYear()} Data Science Universitas Sebelas Maret.
+              </p>
+            </div>
           </div>
 
-          <div className="flex items-center gap-5 text-sm font-medium">
+          {/* Kanan: Tombol Sosial Media SVG yang Rapi & Kontras */}
+          <div className="flex items-center gap-2.5">
             <a
               href={PROFILE.instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-background/80 hover:text-accent transition-colors"
+              aria-label="Instagram"
+              className="w-9 h-9 rounded-xl bg-white/10 hover:bg-accent text-background hover:text-primary border border-white/15 hover:border-accent flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5"
             >
-              <img src="/ig.png" alt="Instagram" className="w-5 h-5" />
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+              </svg>
             </a>
+
             <a
               href={PROFILE.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-background/80 hover:text-accent transition-colors"
+              aria-label="GitHub"
+              className="w-9 h-9 rounded-xl bg-white/10 hover:bg-accent text-background hover:text-primary border border-white/15 hover:border-accent flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5"
             >
-              <img src="/github.png" alt="GitHub" className="w-5 h-5" />
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                />
+              </svg>
             </a>
+
             <a
               href={PROFILE.linkedinUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-background/80 hover:text-accent transition-colors"
+              aria-label="LinkedIn"
+              className="w-9 h-9 rounded-xl bg-white/10 hover:bg-accent text-background hover:text-primary border border-white/15 hover:border-accent flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5"
             >
-              <img src="/linkedin.png" alt="LinkedIn" className="w-5 h-5" />
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg>
             </a>
+
             <a
               href={`mailto:${PROFILE.email}`}
-              className="text-background/80 hover:text-accent transition-colors"
+              aria-label="Email"
+              className="w-9 h-9 rounded-xl bg-white/10 hover:bg-accent text-background hover:text-primary border border-white/15 hover:border-accent flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5"
             >
-              <img src="/email.png" alt="Email" className="w-5 h-5" />
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                <rect width="20" height="16" x="2" y="4" rx="2" />
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+              </svg>
             </a>
           </div>
         </div>
