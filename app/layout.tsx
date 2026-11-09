@@ -27,8 +27,11 @@ export default function RootLayout({
       lang="id"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased scroll-smooth`}
     >
-      <body className="min-h-full flex flex-col bg-[#F8FAFC] text-[#1E293B] selection:bg-[#0EA5E9] selection:text-white">
-        {children}
+      <body className="min-h-full flex flex-col bg-background text-foreground selection:bg-accent selection:text-white relative">
+        {/* Konten Halaman */}
+        <div className="relative z-10 flex-1 flex flex-col">
+          {children}
+        </div>
       </body>
     </html>
   );

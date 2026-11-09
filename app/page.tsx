@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import AnimatedBackground from "./AnimatedBackground";
+import Reveal from "./Reveal";
 
 interface Project {
   id: number;
@@ -19,13 +20,13 @@ interface Project {
   link?: string;
 }
 
-interface education {
+interface EducationItem {
   jenjang: string;
   namaSekolah: string;
   tahunLulus: number | "-";
 }
 
-interface dokumentasi {
+interface DokumentasiItem {
   id: number;
   deskripsi: string;
   gambar: string;
@@ -48,98 +49,97 @@ const PROFILE = {
   email: "kuntohidayat20@gmail.com",
 };
 
-const education: education[] = [
+const education: EducationItem[] = [
   {
     jenjang: "Sekolah Dasar",
     namaSekolah: "SD Negeri 01 Bendosari",
-    tahunLulus: 2017
+    tahunLulus: 2017,
   },
   {
     jenjang: "Sekolah Menengah Pertama",
     namaSekolah: "SMP Negeri 01 Sukoharjo",
-    tahunLulus: 2020
+    tahunLulus: 2020,
   },
   {
     jenjang: "Sekolah Menengah Kejuruan",
     namaSekolah: "SMK Negeri 01 Sukoharjo",
-    tahunLulus: 2023
+    tahunLulus: 2023,
   },
   {
     jenjang: "Perguruan Tinggi",
     namaSekolah: "Universitas Sebelas Maret (UNS)",
-    tahunLulus: "-"
-  }
+    tahunLulus: "-",
+  },
 ];
 
-const dokumentasi: dokumentasi[] = [
+const dokumentasi: DokumentasiItem[] = [
   {
     id: 1,
     deskripsi: "Presiden BEM FATISDA UNS",
     gambar: "/b.jpeg",
-    year: 2026
+    year: 2026,
   },
   {
     id: 2,
-    deskripsi: "PINGFEST",
+    deskripsi: "Steering Committee PINGFEST",
     gambar: "/pingfest2026.jpg",
-    year: 2026
+    year: 2026,
   },
   {
     id: 3,
     deskripsi: "Fatisda Student Developer",
     gambar: "/fsd.jpeg",
-    year: 2026
+    year: 2026,
   },
   {
     id: 4,
     deskripsi: "PKKMB FATISDA UNS",
     gambar: "/pkkmb.jpeg",
-    year: 2026
+    year: 2026,
   },
   {
     id: 5,
     deskripsi: "Menteri Bisnis dan Kemitraan BEM FATISDA UNS",
     gambar: "/bem-2025.jpg",
-    year: 2025
+    year: 2025,
   },
   {
     id: 6,
     deskripsi: "PINGFEST",
     gambar: "/pingfest25.jpg",
-    year: 2025
+    year: 2025,
   },
   {
     id: 7,
     deskripsi: "Kunjungan Internal BEM FATISDA x BEM SV",
     gambar: "/bemsv.JPG",
-    year: 2026
+    year: 2026,
   },
   {
     id: 8,
     deskripsi: "Kunjungan Eksternal BEM FATISDA x HIMAKOM UGM",
     gambar: "/kunex.JPG",
-    year: 2026
+    year: 2026,
   },
   {
     id: 9,
     deskripsi: "Gardapada BEM FATISDA UNS",
     gambar: "/gardapada.JPG",
-    year: 2026
+    year: 2026,
   },
   {
     id: 10,
     deskripsi: "Rapat Kerja BEM FATISDA UNS",
     gambar: "/raker.JPG",
-    year: 2026
+    year: 2026,
   },
   {
     id: 11,
     deskripsi: "Buka Bersama BEM FATISDA UNS",
     gambar: "/bukber.JPG",
-    year: 2026
-  }
+    year: 2026,
+  },
 ];
-
 
 const PROJECTS_DATA: Project[] = [
   {
@@ -281,13 +281,7 @@ const PROJECTS_DATA: Project[] = [
     skills: ["Teaching", "Communication", "Technical Skills"],
     notes: "Succeed",
     year: 2026,
-  }
-];
-
-const SKILLS = [
-  { nama: "BEM FATISDA 2026", level: "President" },
-  { nama: "P!NGFEST 2026", level: "Steering Committee" },
-  { nama: "Fatisda Student Developer", level: "CEO" },
+  },
 ];
 
 export default function Home() {
@@ -316,7 +310,7 @@ export default function Home() {
     : filteredByCategory.slice(0, 3);
 
   return (
-    <div className="min-h-screen bg-background text-foreground flex flex-col relative isolate overflow-x-hidden">
+    <div className="min-h-screen bg-transparent text-primary flex flex-col relative isolate overflow-x-hidden">
       {/* Background Animasi Scroll-Triggered Scrollytelling */}
       <AnimatedBackground />
 
@@ -336,11 +330,27 @@ export default function Home() {
           {/* Menu Desktop (Tampil di layar >= 768px) */}
           <ul className="hidden md:flex items-center gap-6 text-sm font-medium text-background">
             <li>
-              <a //tambahkan animasi pesan diunduh disamping tombol ini
+              <a
                 href="/ngl"
-                className="hover:text-second transition-colors whitespace-nowrap"
+                className="group inline-flex items-center gap-1.5 hover:text-second transition-colors whitespace-nowrap"
               >
-                Kirim Pesan
+                <span>Kirim Pesan</span>
+                {/* Ikon Pesan Masuk dengan Animasi Bounce Halus */}
+                <span className="relative flex items-center justify-center">
+                  <svg
+                    className="w-4 h-4 text-accent group-hover:text-second animate-bounce"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
+                    />
+                  </svg>
+                </span>
               </a>
             </li>
             <li>
@@ -435,9 +445,22 @@ export default function Home() {
             <a
               href="/ngl"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="block w-full text-center bg-primary hover:bg-accent text-background hover:text-primary px-4 py-2.5 rounded-xl text-sm font-semibold transition-all shadow-sm mt-2"
+              className="flex items-center justify-center gap-2 w-full text-center bg-primary hover:bg-accent text-background hover:text-primary px-4 py-2.5 rounded-xl text-sm font-semibold transition-all shadow-sm mt-2"
             >
-              Kirim Pesan
+              <span>Kirim Pesan</span>
+              <svg
+                className="w-4 h-4 text-accent animate-bounce"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
+                />
+              </svg>
             </a>
           </div>
         )}
@@ -451,18 +474,17 @@ export default function Home() {
 
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center relative z-10">
           {/* Kolom Kiri: Teks Utama */}
-          <div className="lg:col-span-7 text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-background border border-accent text-primary text-[11px] sm:text-xs font-semibold mb-5 max-w-full">
+          <Reveal className="lg:col-span-7 text-left">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-background border border-accent text-primary text-[11px] sm:text-xs font-semibold mb-5 max-w-full shadow-xs">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse shrink-0" />
               <span className="truncate">{PROFILE.status}</span>
             </div>
 
-            <h1 className="inline-block px-4 py-2 text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-background rounded-2xl bg-primary hover:text-second leading-tight mb-4 sm:mb-6">
+            <h1 className="inline-block px-4 py-2 text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-background rounded-2xl bg-primary hover:text-second leading-tight mb-4 sm:mb-6 transition-colors">
               Kunto Rossindu H.
             </h1>
 
-
-            <p className="text-sm sm:text-lg text-foreground/75 leading-relaxed mb-7 sm:mb-8 max-w-2xl">
+            <p className="text-sm sm:text-lg text-primary/75 leading-relaxed mb-7 sm:mb-8 max-w-2xl">
               {PROFILE.bioSingkat}
             </p>
 
@@ -488,10 +510,13 @@ export default function Home() {
                 </svg>
               </a>
             </div>
-          </div>
+          </Reveal>
 
           {/* Kolom Kanan: Bingkai Foto Formal Modern SaaS */}
-          <div className="lg:col-span-5 flex justify-center lg:justify-end mt-2 lg:mt-0">
+          <Reveal
+            delay={180}
+            className="lg:col-span-5 flex justify-center lg:justify-end mt-2 lg:mt-0"
+          >
             <div className="relative w-full max-w-xs sm:max-w-sm">
               {/* Dekorasi Aksen Belakang */}
               <div className="absolute -inset-2 rounded-3xl bg-gradient-to-tr from-primary via-second/40 to-transparent opacity-60 blur-lg pointer-events-none" />
@@ -529,154 +554,39 @@ export default function Home() {
                 </div>
               </div>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* Dokumentasi Section */}
-      <section className="relative z-10 py-14 sm:py-20 bg-primary border-t border-white/10 overflow-hidden">
+      <section className="relative z-10 py-14 sm:py-20 bg-background border-t border-second overflow-hidden">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          
           {/* Header & Navigasi Tombol Geser */}
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 sm:mb-10 gap-4">
-            <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-accent bg-accent/10 border border-accent/30 px-3 py-1 rounded-full">
-                Dokumentasi
-              </span>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-background mt-3">
-                Gallery
-              </h2>
-            </div>
+          <Reveal>
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 sm:mb-10 gap-4">
+              <div>
+                <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-primary bg-white border border-primary/15 px-3.5 py-1.5 rounded-full shadow-xs">
+                  <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+                  Dokumentasi
+                </span>
+                <h2 className="text-2xl sm:text-4xl font-extrabold text-primary mt-3">
+                  Gallery
+                </h2>
+              </div>
 
-            {/* Tombol Navigasi Kiri & Kanan (Desktop & Tablet) */}
-            <div className="hidden sm:flex items-center gap-2.5">
-              <button
-                type="button"
-                onClick={() => {
-                  const el = document.getElementById("doc-slider");
-                  el?.scrollBy({ left: -340, behavior: "smooth" });
-                }}
-                aria-label="Geser ke kiri"
-                className="p-2.5 rounded-xl bg-white/5 hover:bg-accent text-background hover:text-primary border border-white/15 hover:border-accent transition-all duration-300 cursor-pointer active:scale-90"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  const el = document.getElementById("doc-slider");
-                  el?.scrollBy({ left: 340, behavior: "smooth" });
-                }}
-                aria-label="Geser ke kanan"
-                className="p-2.5 rounded-xl bg-white/5 hover:bg-accent text-background hover:text-primary border border-white/15 hover:border-accent transition-all duration-300 cursor-pointer active:scale-90"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-            </div>
-          </div>
-
-          {/* Area Slider dengan Efek Blur Fade di Ujung */}
-          <div className="relative -mx-4 px-4 sm:mx-0 sm:px-0">
-            <div
-              id="doc-slider"
-              className="flex gap-5 sm:gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth py-4 px-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
-            >
-              {dokumentasi.map((item, index) => (
-                <div
-                  key={index}
-                  className="snap-start shrink-0 w-[260px] sm:w-[330px] rounded-2xl bg-white/[0.04] backdrop-blur-sm border border-second hover:border-accent/60 shadow-lg hover:shadow-[0_16px_36px_-10px_rgba(98,184,242,0.35)] hover:-translate-y-2 hover:scale-[1.02] transition-all duration-500 ease-out overflow-hidden group flex flex-col justify-between cursor-pointer"
-                >
-                  {/* Top Bar Aksen Gradient */}
-                  <div className="h-1 bg-gradient-to-r from-accent via-second to-accent/40 opacity-70 group-hover:opacity-100 transition-opacity" />
-
-                  {/* Wrapper Gambar dengan Efek Zoom + Rotasi Mikro */}
-                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-white/5">
-                    <img
-                      src={item.gambar}
-                      alt={item.deskripsi}
-                      className="w-full h-full object-cover group-hover:scale-110 group-hover:rotate-1 transition-transform duration-700 ease-out"
-                      loading="lazy"
-                    />
-                    {/* Lapisan Gradient Gelap Halus */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-primary/70 via-transparent to-transparent opacity-80 group-hover:opacity-30 transition-opacity duration-300" />
-                  </div>
-
-                  {/* Keterangan Teks */}
-                  <div className="p-4 sm:p-5">
-                    <p className="font-sans font-extrabold text-center text-background group-hover:text-accent text-sm sm:text-base line-clamp-2 transition-colors duration-300 leading-snug">
-                      {item.deskripsi}
-                    </p>
-                  </div>
-
-                  <div className="p-4 sm:p-5">
-                    <p className="text-xs text-center text-background/60 hover:text-second transition-colors duration-300">
-                      {item.year}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Petunjuk Swipe di Mobile */}
-          <div className="flex sm:hidden items-center justify-center gap-1.5 mt-4 text-[11px] font-mono text-background/40">
-            <span>&larr; Geser untuk melihat foto &rarr;</span>
-          </div>
-        </div>
-      </section>
-
-{/* Projects Section */}
-      <section
-        id="projects"
-        className="relative z-10 py-14 sm:py-20 px-4 sm:px-6 bg-primary border-t border-second"
-      >
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 sm:mb-12 gap-5">
-            <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-accent bg-accent/10 border border-accent/30 px-3 py-1 rounded-full">
-                Portofolio
-              </span>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-background mt-3">
-                Pengalaman &amp; Proyek
-              </h2>
-            </div>
-
-            {/* Dropdown Filter Kategori */}
-            <div className="relative w-full sm:w-64 group/dropdown">
-              <label
-                htmlFor="category-select"
-                className="block text-[11px] font-mono uppercase tracking-wider text-second mb-1.5 transition-colors duration-300 group-hover/dropdown:text-accent"
-              >
-                Filter Kategori
-              </label>
-              <div className="relative transition-transform duration-300 active:scale-95">
-                <select
-                  id="category-select"
-                  value={selectedCategory}
-                  onChange={(e) => {
-                    setSelectedCategory(e.target.value);
-                    setShowAll(false);
+              {/* Tombol Navigasi Kiri & Kanan (Desktop & Tablet) */}
+              <div className="hidden sm:flex items-center gap-2.5">
+                <button
+                  type="button"
+                  onClick={() => {
+                    const el = document.getElementById("doc-slider");
+                    el?.scrollBy({ left: -340, behavior: "smooth" });
                   }}
-                  className="w-full appearance-none bg-white/5 text-second font-semibold text-sm px-4 py-3 pr-10 rounded-xl border border-white/15 shadow-sm hover:border-accent hover:-translate-y-0.5 hover:shadow-[0_8px_20px_-6px_rgba(98,184,242,0.3)] focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition-all duration-300 cursor-pointer"
+                  aria-label="Geser ke kiri"
+                  className="p-2.5 rounded-xl bg-primary hover:bg-accent text-background hover:text-primary border border-primary hover:border-accent shadow-sm transition-all duration-300 cursor-pointer active:scale-90"
                 >
-                  {categories.map((cat) => (
-                    <option 
-                      key={cat} 
-                      value={cat}
-                      className="bg-[#101f0a] text-accent font-medium py-1"
-                    >
-                      {cat === "Semua" ? "Semua Kategori" : cat}
-                    </option>
-                  ))}
-                </select>
-                
-                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3.5 text-background/50 group-hover/dropdown:text-accent group-hover/dropdown:rotate-12 transition-all duration-300">
                   <svg
-                    className="w-4 h-4 transform transition-transform duration-300 group-hover/dropdown:translate-y-0.5"
+                    className="w-5 h-5"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -685,103 +595,251 @@ export default function Home() {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth={2.5}
-                      d="M19 9l-7 7-7-7"
+                      d="M15 19l-7-7 7-7"
                     />
                   </svg>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    const el = document.getElementById("doc-slider");
+                    el?.scrollBy({ left: 340, behavior: "smooth" });
+                  }}
+                  aria-label="Geser ke kanan"
+                  className="p-2.5 rounded-xl bg-primary hover:bg-accent text-background hover:text-primary border border-primary hover:border-accent shadow-sm transition-all duration-300 cursor-pointer active:scale-90"
+                >
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2.5}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </Reveal>
+
+          {/* Area Slider dengan Animasi Timbul */}
+          <Reveal delay={150}>
+            <div className="relative -mx-4 px-4 sm:mx-0 sm:px-0">
+              <div
+                id="doc-slider"
+                className="flex gap-5 sm:gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth py-4 px-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+              >
+                {dokumentasi.map((item, index) => (
+                  <div
+                    key={index}
+                    className="snap-start shrink-0 w-[260px] sm:w-[330px] rounded-2xl bg-white/85 backdrop-blur-md border-2 border-primary/10 hover:border-accent shadow-md hover:shadow-[0_16px_36px_-10px_rgba(98,184,242,0.4)] hover:-translate-y-2 hover:scale-[1.02] transition-all duration-500 ease-out overflow-hidden group flex flex-col justify-between cursor-pointer"
+                  >
+                    <div>
+                      {/* Top Bar Aksen Gradient */}
+                      <div className="h-1.5 bg-gradient-to-r from-primary via-accent to-second" />
+
+                      {/* Wrapper Gambar dengan Efek Zoom + Rotasi Mikro */}
+                      <div className="relative aspect-[4/3] w-full overflow-hidden bg-primary/5">
+                        <img
+                          src={item.gambar}
+                          alt={item.deskripsi}
+                          className="w-full h-full object-cover group-hover:scale-110 group-hover:rotate-1 transition-transform duration-700 ease-out"
+                          loading="lazy"
+                        />
+                        {/* Lapisan Gradient Gelap Halus */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-70 group-hover:opacity-20 transition-opacity duration-300" />
+                      </div>
+
+                      {/* Keterangan Teks */}
+                      <div className="p-4 sm:p-5 pb-2">
+                        <p className="font-sans font-extrabold text-center text-primary group-hover:text-accent text-sm sm:text-base line-clamp-2 transition-colors duration-300 leading-snug">
+                          {item.deskripsi}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="px-4 pb-4 sm:px-5 sm:pb-5 pt-1">
+                      <p className="text-xs font-mono font-semibold text-center text-primary/60 group-hover:text-primary transition-colors duration-300">
+                        {item.year}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Petunjuk Swipe di Mobile */}
+            <div className="flex sm:hidden items-center justify-center gap-1.5 mt-4 text-[11px] font-mono text-primary/60">
+              <span>&larr; Geser untuk melihat foto &rarr;</span>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Projects Section */}
+      <section
+        id="projects"
+        className="relative z-10 py-14 sm:py-20 px-4 sm:px-6 bg-transparent border-t border-primary/10"
+      >
+        <div className="max-w-6xl mx-auto">
+          <Reveal>
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 sm:mb-12 gap-5">
+              <div>
+                {/* Badge bergaya pill putih selaras dengan Hero Section */}
+                <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-primary bg-white border border-primary/15 px-3.5 py-1.5 rounded-full shadow-xs">
+                  <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+                  Portofolio
+                </span>
+                <h2 className="text-2xl sm:text-4xl font-extrabold text-primary mt-3">
+                  Pengalaman &amp; Proyek
+                </h2>
+              </div>
+
+              {/* Dropdown Filter Kategori */}
+              <div className="relative w-full sm:w-64 group/dropdown">
+                <label
+                  htmlFor="category-select"
+                  className="block text-[11px] font-mono font-bold uppercase tracking-wider text-foreground/70 mb-1.5 transition-colors duration-300 group-hover/dropdown:text-primary"
+                >
+                  Filter Kategori
+                </label>
+                <div className="relative transition-transform duration-300 active:scale-95">
+                  <select
+                    id="category-select"
+                    value={selectedCategory}
+                    onChange={(e) => {
+                      setSelectedCategory(e.target.value);
+                      setShowAll(false);
+                    }}
+                    className="w-full appearance-none bg-primary text-background font-semibold text-sm px-4 py-3 pr-10 rounded-xl border-2 border-primary shadow-md hover:border-accent hover:-translate-y-0.5 hover:shadow-[0_8px_20px_-6px_rgba(98,184,242,0.45)] focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/30 transition-all duration-300 cursor-pointer"
+                  >
+                    {categories.map((cat) => (
+                      <option
+                        key={cat}
+                        value={cat}
+                        className="bg-primary text-background font-medium py-1"
+                      >
+                        {cat === "Semua" ? "Semua Kategori" : cat}
+                      </option>
+                    ))}
+                  </select>
+
+                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3.5 text-accent group-hover/dropdown:text-second group-hover/dropdown:rotate-12 transition-all duration-300">
+                    <svg
+                      className="w-4 h-4 transform transition-transform duration-300 group-hover/dropdown:translate-y-0.5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2.5}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </Reveal>
 
           {/* Projects Grid */}
           {displayedProjects.length > 0 ? (
             <>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                {displayedProjects.map((project) => (
-                  <div
+                {displayedProjects.map((project, index) => (
+                  <Reveal
                     key={project.id}
-                    className="group bg-white/[0.04] backdrop-blur-sm border border-second rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl hover:border-accent/50 hover:bg-white/[0.07] transition-all duration-300 flex flex-col justify-between"
+                    delay={(index % 3) * 120}
+                    className="h-full"
                   >
-                    <div>
-                      {/* Top Accent Bar */}
-                      <div className="h-1.5 bg-gradient-to-r from-accent via-second to-accent/40" />
+                    <div className="h-full group bg-white/85 backdrop-blur-md border-2 border-primary/10 rounded-2xl overflow-hidden shadow-sm hover:shadow-[0_12px_30px_-10px_rgba(98,184,242,0.4)] hover:border-accent hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+                      <div>
+                        {/* Top Accent Bar */}
+                        <div className="h-1.5 bg-gradient-to-r from-primary via-accent to-second" />
 
-                      <div className="p-5 sm:p-6">
-                        <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
-                          <span className="text-xs font-semibold text-accent bg-accent/15 px-2.5 py-1 rounded-md border border-accent/30">
-                            {project.kategori}
-                          </span>
-                          {(project.year || project.notes) && (
-                            <span className="text-[11px] font-mono font-medium text-background/70 bg-white/10 px-2.5 py-1 rounded-md border border-white/5">
-                              {project.year ? `${project.year} ` : ""}
-                              {project.notes || ""}
+                        <div className="p-5 sm:p-6">
+                          <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+                            <span className="text-xs font-bold text-primary bg-accent/20 px-2.5 py-1 rounded-md border border-accent/40">
+                              {project.kategori}
                             </span>
+                            {(project.year || project.notes) && (
+                              <span className="text-[11px] font-mono font-semibold text-foreground/70 bg-primary/5 px-2.5 py-1 rounded-md border border-primary/10">
+                                {project.year ? `${project.year} ` : ""}
+                                {project.notes || ""}
+                              </span>
+                            )}
+                          </div>
+
+                          <h3 className="text-lg sm:text-xl font-bold text-primary group-hover:text-accent transition-colors mb-2">
+                            {project.nama}
+                          </h3>
+
+                          <p className="text-foreground/80 text-sm leading-relaxed mb-5 sm:mb-6">
+                            {project.deskripsi}
+                          </p>
+
+                          {/* Skills */}
+                          <div>
+                            <p className="text-[11px] font-bold uppercase tracking-wider text-foreground/45 mb-2">
+                              Skills
+                            </p>
+                            <div className="flex flex-wrap gap-1.5">
+                              {project.skills.map((tech, idx) => (
+                                <span
+                                  key={idx}
+                                  className="bg-primary text-background text-xs font-medium px-2.5 py-1 rounded-md border border-primary group-hover:border-accent/50 transition-colors"
+                                >
+                                  {tech}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+
+                          {/* Link Proyek */}
+                          {project.link && (
+                            <div className="mt-5 pt-4 border-t border-primary/10">
+                              <a
+                                href={project.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-primary hover:text-accent transition-colors"
+                              >
+                                <span>Lihat Proyek / Artikel</span>
+                                <svg
+                                  className="w-4 h-4 shrink-0"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                                  />
+                                </svg>
+                              </a>
+                            </div>
                           )}
                         </div>
-
-                        <h3 className="text-lg sm:text-xl font-bold text-background group-hover:text-accent transition-colors mb-2">
-                          {project.nama}
-                        </h3>
-
-                        <p className="text-background/75 text-sm leading-relaxed mb-5 sm:mb-6">
-                          {project.deskripsi}
-                        </p>
-
-                        {/* Skills */}
-                        <div>
-                          <p className="text-[11px] font-bold uppercase tracking-wider text-background/45 mb-2">
-                            Skills
-                          </p>
-                          <div className="flex flex-wrap gap-1.5">
-                            {project.skills.map((tech, idx) => (
-                              <span
-                                key={idx}
-                                className="bg-accent/15 text-second border border-accent/25 text-xs font-medium px-2.5 py-1 rounded-md"
-                              >
-                                {tech}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-
-                        {/* Link Proyek */}
-                        {project.link && (
-                          <div className="mt-5 pt-4 border-t border-white/10">
-                            <a
-                              href={project.link}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-accent hover:text-second transition-colors"
-                            >
-                              <span>Lihat Proyek / Artikel</span>
-                              <svg
-                                className="w-4 h-4 shrink-0"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                              >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  strokeWidth={2}
-                                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                                />
-                              </svg>
-                            </a>
-                          </div>
-                        )}
                       </div>
                     </div>
-                  </div>
+                  </Reveal>
                 ))}
               </div>
 
               {/* Tombol Toggle Lihat Semua */}
               {filteredByCategory.length > 3 && (
-                <div className="mt-8 sm:mt-10 text-center">
+                <Reveal delay={200} className="mt-8 sm:mt-10 text-center">
                   <button
                     onClick={() => setShowAll((prev) => !prev)}
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white/5 hover:bg-accent text-background hover:text-primary border border-white/15 hover:border-accent px-6 py-3 rounded-xl text-sm font-semibold shadow-sm transition-all duration-300 cursor-pointer"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-primary hover:bg-accent text-background hover:text-primary border-2 border-primary hover:border-accent px-6 py-3 rounded-xl text-sm font-bold shadow-md hover:shadow-[0_8px_20px_-6px_rgba(98,184,242,0.5)] transition-all duration-300 cursor-pointer"
                   >
                     <span>
                       {showAll
@@ -804,18 +862,20 @@ export default function Home() {
                       />
                     </svg>
                   </button>
-                </div>
+                </Reveal>
               )}
             </>
           ) : (
-            <div className="bg-white/[0.03] border border-dashed border-white/20 rounded-2xl p-8 sm:p-12 text-center">
-              <p className="text-background/85 font-medium mb-1 text-sm sm:text-base">
-                Belum ada proyek di kategori &quot;{selectedCategory}&quot;
-              </p>
-              <p className="text-background/50 text-xs sm:text-sm">
-                Proyek baru untuk kategori ini sedang dalam tahap perancangan.
-              </p>
-            </div>
+            <Reveal>
+              <div className="bg-white/80 backdrop-blur-sm border-2 border-dashed border-primary/20 rounded-2xl p-8 sm:p-12 text-center">
+                <p className="text-primary font-semibold mb-1 text-sm sm:text-base">
+                  Belum ada proyek di kategori &quot;{selectedCategory}&quot;
+                </p>
+                <p className="text-foreground/60 text-xs sm:text-sm">
+                  Proyek baru untuk kategori ini sedang dalam tahap perancangan.
+                </p>
+              </div>
+            </Reveal>
           )}
         </div>
       </section>
@@ -823,108 +883,119 @@ export default function Home() {
       {/* About Section (Bento Grid Style) */}
       <section
         id="about"
-        className="relative z-10 py-14 sm:py-20 px-4 sm:px-6 bg-primary/5 border-t border-primary/10"
+        className="relative z-10 py-14 sm:py-20 px-4 sm:px-6 bg-transparent"
       >
         <div className="max-w-6xl mx-auto">
-          <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
-            <span className="text-xs font-bold uppercase tracking-wider text-primary bg-background border border-accent/40 px-3 py-1 rounded-full">
+          <Reveal className="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
+            <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-primary bg-white border border-primary/15 px-3.5 py-1.5 rounded-full shadow-xs">
+              <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
               Kenalan Lebih Dekat
             </span>
             <h2 className="text-2xl sm:text-4xl font-extrabold text-primary mt-3">
               Di Balik Layar
             </h2>
-          </div>
+          </Reveal>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Bento 1: Bio */}
-            <div className="md:col-span-2 bg-white p-6 sm:p-8 rounded-2xl border border-primary/10 shadow-sm">
-              <h3 className="text-lg sm:text-xl font-bold text-primary mb-3">
-                Filosofi Kerja Saya
-              </h3>
-              <div className="text-foreground/75 leading-relaxed text-sm sm:text-base space-y-4">
-                <p>
-                  Sebagai seorang pemimpin yang adaptif dan berani mengambil keputusan strategis di tengah ketidakpastian,
-                  saya memadukan pendekatan terstruktur dengan empati mendalam untuk membawa dampak positif.
-                  Lewat manajemen tim yang terorganisir dan pengelolaan sumber daya yang efisien,
-                  saya menyelaraskan setiap langkah dengan visi bersama sembari tetap memahami perspektif para pemangku kepentingan.
-                  Berorientasi penuh pada hasil, kompas profesional saya berfokus pada penghasihan solusi nyata, inovatif, dan berbasis data untuk setiap dinamika organisasi.
-                </p>
-              </div>
-            </div>
-
-            {/* Bento 2: Profile Photo Card */}
-            <div className="bg-background text-background p-3 rounded-2xl shadow-sm flex flex-col justify-between group border border-primary/10">
-              <div className="relative w-full h-80 md:h-full min-h-[260px] rounded-xl overflow-hidden bg-primary">
-                <img
-                  src="/kunto.jpeg"
-                  alt={PROFILE.nama}
-                  className="w-full h-full object-cover object-center group-hover:scale-150 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-transparent to-transparent" />
-                <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between gap-2">
-                  <div className="min-w-0">
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-second block truncate">
-                      Presiden BEM FATISDA UNS 2026
-                    </span>
-                    <p className="text-sm font-bold text-background leading-tight truncate">
-                      {PROFILE.nama}
-                    </p>
-                  </div>
-                  <span className="w-2.5 h-2.5 rounded-full bg-accent ring-4 ring-accent/20 shrink-0" />
+            <Reveal delay={100} className="md:col-span-2 h-full">
+              <div className="h-full bg-white/85 backdrop-blur-md p-6 sm:p-8 rounded-2xl border-2 border-primary/10 shadow-sm flex flex-col justify-center">
+                <h3 className="text-lg sm:text-xl font-bold text-primary mb-3">
+                  Filosofi Kerja Saya
+                </h3>
+                <div className="text-primary/75 leading-relaxed text-sm sm:text-base space-y-4">
+                  <p>
+                    Sebagai seorang pemimpin yang adaptif dan berani mengambil
+                    keputusan strategis di tengah ketidakpastian, saya memadukan
+                    pendekatan terstruktur dengan empati mendalam untuk membawa
+                    dampak positif. Lewat manajemen tim yang terorganisir dan
+                    pengelolaan sumber daya yang efisien, saya menyelaraskan
+                    setiap langkah dengan visi bersama sembari tetap memahami
+                    perspektif para pemangku kepentingan. Berorientasi penuh
+                    pada hasil, kompas profesional saya berfokus pada
+                    penghasilan solusi nyata, inovatif, dan berbasis data untuk
+                    setiap dinamika organisasi.
+                  </p>
                 </div>
               </div>
-            </div>
+            </Reveal>
 
-            {/* Bento 3: Education Background - Layout Statis Rapi */}
-            <div className="md:col-span-3 bg-white p-6 sm:p-8 rounded-3xl border border-primary/10 shadow-sm flex flex-col justify-between h-full">
-              
-              {/* Bagian Judul */}
-              <div className="mb-6">
-                <h3 className="text-base sm:text-lg font-bold text-primary tracking-wide">
-                  Education Background
-                </h3>
-                <p className="text-xs text-foreground/50 mt-0.5">
-                  Perjalanan akademis dan institusi tempat menempuh pendidikan.
-                </p>
-              </div>
-
-              {/* Grid Responsif Dinamis */}
-              {/* Menggunakan grid-cols-1 (HP), sm:grid-cols-2 (Tablet), dan lg:grid-cols-3 (Desktop) */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
-                {education.map((edu, index) => (
-                  <div
-                    key={index}
-                    className="flex flex-col justify-between p-5 rounded-2xl bg-background/40 backdrop-blur-sm border border-second shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:border-accent hover:shadow-[0_10px_30px_-10px_rgba(98,184,242,0.2)] hover:-translate-y-1 transition-all duration-300 group"
-                  >
-                    <div>
-                      {/* Badge Jenjang */}
-                      <span className="inline-block px-2.5 py-0.5 text-[10px] font-mono font-bold uppercase tracking-wider rounded-md bg-primary text-background group-hover:bg-accent hover:text-background transition-colors duration-300">
-                        {edu.jenjang}
+            {/* Bento 2: Profile Photo Card */}
+            <Reveal delay={220} className="h-full">
+              <div className="h-full bg-white/85 backdrop-blur-md text-background p-3 rounded-2xl shadow-sm flex flex-col justify-between group border-2 border-primary/10">
+                <div className="relative w-full h-80 md:h-full min-h-[260px] rounded-xl overflow-hidden bg-primary">
+                  <img
+                    src="/kunto.jpeg"
+                    alt={PROFILE.nama}
+                    className="w-full h-full object-cover object-center group-hover:scale-150 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-transparent to-transparent" />
+                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between gap-2">
+                    <div className="min-w-0">
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-second block truncate">
+                        Presiden BEM FATISDA UNS 2026
                       </span>
-
-                      {/* Nama Sekolah */}
-                      <h4 className="text-sm font-sans font-bold text-primary mt-3 line-clamp-2 group-hover:text-accent transition-colors duration-300 min-h-[40px]">
-                        {edu.namaSekolah}
-                      </h4>
+                      <p className="text-sm font-bold text-background leading-tight truncate">
+                        {PROFILE.nama}
+                      </p>
                     </div>
-
-                    {/* Informasi Kelulusan */}
-                    <div className="flex items-center justify-between mt-4 pt-3 border-t border-primary/5 text-xs text-foreground/60">
-                      <span>Lulus</span>
-                      <span className="font-mono text-accent font-semibold">
-                        {edu.tahunLulus} 
-                      </span>
-                    </div>
+                    <span className="w-2.5 h-2.5 rounded-full bg-accent ring-4 ring-accent/20 shrink-0" />
                   </div>
-                ))}
+                </div>
               </div>
-            </div>
+            </Reveal>
+
+            {/* Bento 3: Education Background */}
+            <Reveal delay={300} className="md:col-span-3">
+              <div className="bg-white/85 backdrop-blur-md p-6 sm:p-8 rounded-3xl border-2 border-primary/10 shadow-sm flex flex-col justify-between h-full">
+                {/* Bagian Judul */}
+                <div className="mb-6">
+                  <h3 className="text-base sm:text-lg font-bold text-primary tracking-wide">
+                    Education Background
+                  </h3>
+                  <p className="text-xs text-primary/50 mt-0.5">
+                    Perjalanan akademis dan institusi tempat menempuh
+                    pendidikan.
+                  </p>
+                </div>
+
+                {/* Grid Responsif Dinamis */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
+                  {education.map((edu, index) => (
+                    <div
+                      key={index}
+                      className="flex flex-col justify-between p-5 rounded-2xl bg-background/60 backdrop-blur-sm border border-second shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:border-accent hover:shadow-[0_10px_30px_-10px_rgba(98,184,242,0.25)] hover:-translate-y-1 transition-all duration-300 group"
+                    >
+                      <div>
+                        {/* Badge Jenjang */}
+                        <span className="inline-block px-2.5 py-0.5 text-[10px] font-mono font-bold uppercase tracking-wider rounded-md bg-primary text-background group-hover:bg-accent group-hover:text-primary transition-colors duration-300">
+                          {edu.jenjang}
+                        </span>
+
+                        {/* Nama Sekolah */}
+                        <h4 className="text-sm font-sans font-bold text-primary mt-3 line-clamp-2 group-hover:text-accent transition-colors duration-300 min-h-[40px]">
+                          {edu.namaSekolah}
+                        </h4>
+                      </div>
+
+                      {/* Informasi Kelulusan */}
+                      <div className="flex items-center justify-between mt-4 pt-3 border-t border-primary/10 text-xs text-primary/60">
+                        <span>Lulus</span>
+                        <span className="font-mono text-primary font-bold group-hover:text-accent transition-colors">
+                          {edu.tahunLulus}
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="relative z-10 bg-primary text-background py-8 sm:py-10 mt-auto">
+      <footer className="relative z-10 bg-primary text-background py-8 sm:py-10 mt-auto border-t border-second">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-center sm:text-left">
             <p className="font-bold text-sm sm:text-base">{PROFILE.nama}</p>

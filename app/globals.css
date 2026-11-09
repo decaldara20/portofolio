@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --background: #F8FAFC; /* Warna Latar Utama */
-  --foreground: #1E293B; /* Warna Teks Utama */
+  --background: #F8FAFC; /* Warna Latar Utama (Terang / Putih) */
+  --foreground: #1E293B; /* Warna Teks Utama (Gelap) */
   --primary: #101f0a;    /* Warna Brand / Dominan */
-  --accent: #62b8f2;     /* Warna Aksen / Sorotan (Ubah di sini kapan saja) */
-  --second: #FFD700; /* Warna Aksen Sekunder */
-  --third: #000080 ; /* Warna Aksen Tersier */
+  --accent: #62b8f2;     /* Warna Aksen / Sorotan */
+  --second: #FFD700;     /* Warna Aksen Sekunder */
+  --third: #000080;      /* Warna Aksen Tersier */
 }
 
 @theme inline {
@@ -14,7 +14,6 @@
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
   --color-accent: var(--accent);
-  /* PERBAIKAN: Tailwind v4 mendeteksi ini sebagai class 'second' */
   --color-second: var(--second); 
   --color-third: var(--third);
   --font-sans: var(--font-geist-sans);
@@ -25,10 +24,17 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Selector body tunggal dengan latar putih dan jaring biru */
 body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), sans-serif;
+
+  /* Pola Jaring-jaring Biru di atas Latar Putih */
+  background-image: 
+    linear-gradient(to right, rgba(98, 184, 242, 0.3) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(98, 184, 242, 0.3) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
 
 @keyframes marquee-right {
