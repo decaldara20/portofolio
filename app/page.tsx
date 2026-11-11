@@ -416,7 +416,7 @@ export default function Home() {
       <header className="sticky top-3 sm:top-5 z-50 w-full px-4 sm:px-6 pointer-events-none">
         <nav
           aria-label="Navigasi Utama"
-          className="max-w-6xl mx-auto rounded-2xl sm:rounded-full bg-white/80 backdrop-blur-md border-2 border-primary/10 shadow-[0_8px_30px_rgba(16,31,10,0.06)] px-4 sm:px-6 py-2.5 sm:py-3 flex items-center justify-between gap-3 pointer-events-auto transition-all duration-300 hover:border-accent/50"
+          className="max-w-6xl mx-auto rounded-2xl sm:rounded-full bg-white/80 hover:bg-transparent backdrop-blur-md hover:backdrop-blur-none border-2 border-primary/10 hover:border-transparent shadow-[0_8px_30px_rgba(16,31,10,0.06)] hover:shadow-none px-4 sm:px-6 py-2.5 sm:py-3 flex items-center justify-between gap-3 pointer-events-auto transition-all duration-300"
         >
           {/* Brand Logo */}
           <a
