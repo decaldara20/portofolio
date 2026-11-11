@@ -15,8 +15,7 @@ interface Project {
     | "Academic Experience";
   deskripsi: string;
   skills: string[];
-  notes: string;
-  year?: number;
+  date?: string;
   link?: string;
 }
 
@@ -30,7 +29,7 @@ interface DokumentasiItem {
   id: number;
   deskripsi: string;
   gambar: string;
-  year?: number;
+  date?: string;
 }
 
 function Icon({
@@ -147,97 +146,97 @@ const dokumentasi: DokumentasiItem[] = [
     id: 1,
     deskripsi: "Presiden BEM FATISDA UNS",
     gambar: "/b.jpeg",
-    year: 2026,
+    date: "Februari 2026-Sekarang",
   },
   {
     id: 2,
     deskripsi: "Steering Committee PINGFEST",
     gambar: "/pingfest2026.jpg",
-    year: 2026,
+    date: "Mei-November 2026",
   },
   {
     id: 3,
     deskripsi: "CEO Fatisda Student Developer",
     gambar: "/fsd.jpeg",
-    year: 2026,
+    date: "Februari 2026-Sekarang",
   },
   {
     id: 4,
     deskripsi: "Steering Committee PKKMB FATISDA UNS",
     gambar: "/pkkmb.jpeg",
-    year: 2026,
+    date: "Mei-Agustus 2026",
   },
   {
     id: 5,
     deskripsi: "Menteri Bisnis dan Kemitraan BEM FATISDA UNS",
     gambar: "/bem-2025.jpeg",
-    year: 2025,
+    date: "Februari-Desember 2025",
   },
   {
     id: 6,
     deskripsi: "Staff Fundraising PINGFEST",
     gambar: "/pingfest25.jpg",
-    year: 2025,
+    date: "April-November 2025",
   },
   {
     id: 7,
     deskripsi: "Kunjungan Internal BEM FATISDA x BEM SV UNS",
     gambar: "/bemsv.JPG",
-    year: 2026,
+    date: "Maret 2026",
   },
   {
     id: 8,
     deskripsi: "Kunjungan Eksternal BEM FATISDA UNS x HIMAKOM UGM",
     gambar: "/kunex.JPG",
-    year: 2026,
+    date: "Juni 2026",
   },
   {
     id: 9,
     deskripsi: "Gardapada BEM FATISDA UNS",
     gambar: "/gardapada.JPG",
-    year: 2026,
+    date: "Februari 2026-Sekarang",
   },
   {
     id: 10,
     deskripsi: "Rapat Kerja BEM FATISDA UNS",
     gambar: "/raker.JPG",
-    year: 2026,
+    date: "Maret 2026",
   },
   {
     id: 11,
     deskripsi: "Buka Bersama BEM FATISDA UNS",
     gambar: "/bukber.JPG",
-    year: 2026,
+    date: "Februari 2026",
   },
   {
     id: 12,
     deskripsi: "Kakak Asuh BEM FATISDA UNS",
     gambar: "/kasuh.jpeg",
-    year: 2026,
+    date: "September-Oktober 2026",
   },
   {
     id: 13,
     deskripsi: "Sosialisasi BEM FATISDA di PKKMB FATISDA UNS",
     gambar: "/sosialisasi.JPG",
-    year: 2026,
+    date: "Agustus 2026",
   },
   {
     id: 14,
     deskripsi: "Kunjungan Internal BEM FATISDA x Himakesja UNS",
     gambar: "/kunin25.jpg",
-    year: 2025,
+    date: "Mei 2025",
   },
   {
     id: 15,
     deskripsi: "Staff Konsumsi PKKMB FATISDA UNS",
     gambar: "/pkkmb25.jpg",
-    year: 2025,
+    date: "Mei-Agustus 2025",
   },
   {
     id: 16,
     deskripsi: "Kunjungan Eksternal BEM FATISDA UNS x HMIF UII",
     gambar: "/kunex25.jpg",
-    year: 2025,
+    date: "November 2025",
   }
 ];
 
@@ -249,8 +248,7 @@ const PROJECTS_DATA: Project[] = [
     deskripsi:
       "Kepala divisi yang bertanggung jawab atas pengembangan kemitraan strategis dan inisiatif bisnis untuk mendukung keberlanjutan organisasi BEM FATISDA UNS 2025.",
     skills: ["Leadership", "Strategic Planning", "Partnership Development"],
-    notes: "Succeed",
-    year: 2025,
+    date: "Februari-Desember 2025",
   },
   {
     id: 2,
@@ -259,8 +257,7 @@ const PROJECTS_DATA: Project[] = [
     deskripsi:
       "Anggota tim yang berfokus pada penggalangan dana untuk mendukung kesuksesan acara P!NGFEST 2025.",
     skills: ["Fundraising", "Team Collaboration"],
-    notes: "Succeed",
-    year: 2025,
+    date: "April-November 2025",
   },
   {
     id: 3,
@@ -280,8 +277,7 @@ const PROJECTS_DATA: Project[] = [
       "Collaboration",
       "Project Management",
     ],
-    notes: "On going",
-    year: 2026,
+    date: "Februari 2026-Sekarang",
   },
   {
     id: 4,
@@ -298,8 +294,7 @@ const PROJECTS_DATA: Project[] = [
       "Problem Solving",
       "Decision Making",
     ],
-    notes: "On going",
-    year: 2026,
+    date: "Mei-November 2026",
   },
   {
     id: 5,
@@ -317,8 +312,7 @@ const PROJECTS_DATA: Project[] = [
       "Decision Making",
       "Innovation",
     ],
-    notes: "On going",
-    year: 2026,
+    date: "Januari 2026-Sekarang",
   },
   {
     id: 6,
@@ -327,8 +321,7 @@ const PROJECTS_DATA: Project[] = [
     deskripsi:
       "Praktik kerja lapangan yang berfokus pada pengembangan keterampilan teknis dan manajerial di bidang teknologi informasi, termasuk pengelolaan proyek, analisis sistem, dan implementasi perbaikan berbagai perangkat komputer.",
     skills: ["Technical Skills", "Problem Solving", "Team Collaboration"],
-    notes: "Succeed",
-    year: 2022,
+    date: "September-Desember 2022",
   },
   {
     id: 7,
@@ -337,8 +330,7 @@ const PROJECTS_DATA: Project[] = [
     deskripsi:
       "Artikel yang membahas secara mendalam tentang infrastruktur dan platform big data, termasuk arsitektur, teknologi, dan praktik terbaik dalam pengelolaan serta analisis data skala besar.",
     skills: ["Research", "Technical Writing", "Data Analysis"],
-    notes: "Succeed",
-    year: 2026,
+    date: "Maret 2026",
     link: "https://artikel-ipbd.vercel.app/",
   },
   {
@@ -348,8 +340,7 @@ const PROJECTS_DATA: Project[] = [
     deskripsi:
       "Artikel yang membahas secara mendalam tentang keamanan data dengan fokus pada implementasi autentikasi menggunakan JSON Web Tokens (JWT), termasuk analisis risiko, praktik terbaik, dan studi kasus.",
     skills: ["Research", "Technical Writing", "Data Security"],
-    notes: "Succeed",
-    year: 2026,
+    date: "April 2026",
     link: "https://reviewpaperkeamanandata.vercel.app/",
   },
   {
@@ -359,8 +350,7 @@ const PROJECTS_DATA: Project[] = [
     deskripsi:
       "Asisten praktikum yang membantu dalam pelaksanaan praktikum mata kuliah Jaringan Komputer Informatika 2026, termasuk persiapan materi, bimbingan praktikum, dan evaluasi hasil praktikum.",
     skills: ["Teaching", "Communication", "Technical Skills"],
-    notes: "Succeed",
-    year: 2026,
+    date: "Maret-Juni 2026",
   },
   {
     id: 10,
@@ -369,8 +359,7 @@ const PROJECTS_DATA: Project[] = [
     deskripsi:
       "Asisten praktikum yang membantu dalam pelaksanaan praktikum mata kuliah Perancangan dan Implementasi Basis Data Sains Data 2026, termasuk persiapan materi, bimbingan praktikum, dan evaluasi hasil praktikum.",
     skills: ["Teaching", "Communication", "Technical Skills"],
-    notes: "On going",
-    year: 2026,
+    date: "Mei-Juni 2026",
   },
   {
     id: 11,
@@ -379,8 +368,7 @@ const PROJECTS_DATA: Project[] = [
     deskripsi:
       "Asisten praktikum yang membantu dalam pelaksanaan praktikum mata kuliah Jaringan Komputer Prodi Sains Data 2026, termasuk persiapan materi, bimbingan praktikum, dan evaluasi hasil praktikum.",
     skills: ["Teaching", "Communication", "Technical Skills"],
-    notes: "On going",
-    year: 2026,
+    date: "September 2026-Sekarang",
   },
   {
     id: 12,
@@ -389,8 +377,7 @@ const PROJECTS_DATA: Project[] = [
     deskripsi:
       "Sistem autentikasi dinamis yang menggunakan JSON Web Tokens (JWT) dengan algoritma HS256, dikembangkan berdasarkan logika fuzzy dan prinsip zero-trust.",
     skills: ["Security", "Programming", "Research", "Web Development"],
-    notes: "Succeed",
-    year: 2026,
+    date: "April 2026",
     link: "https://kda-2-b.vercel.app/",
   },
 ];
@@ -747,7 +734,7 @@ export default function Home() {
 
                     <div className="px-4 pb-4 sm:px-5 sm:pb-5 pt-1">
                       <p className="text-xs font-mono font-semibold text-center text-primary/60 group-hover:text-primary transition-colors duration-300">
-                        {item.year}
+                        {item.date}
                       </p>
                     </div>
                   </div>
@@ -851,10 +838,9 @@ export default function Home() {
                             <span className="text-xs font-bold text-primary bg-accent/20 px-2.5 py-1 rounded-md border border-accent/40">
                               {project.kategori}
                             </span>
-                            {(project.year || project.notes) && (
-                              <span className="text-[11px] font-mono font-semibold text-foreground/70 bg-primary/5 px-2.5 py-1 rounded-md border border-primary/10">
-                                {project.year ? `${project.year} ` : ""}
-                                {project.notes || ""}
+                            {(project.date) && (
+                              <span className="text-[11px] font-mono font-semibold text-primary hover:text-accent bg-background/20 px-2.5 py-1 rounded-md border border-second">
+                                {project.date ? `${project.date} ` : ""}
                               </span>
                             )}
                           </div>
