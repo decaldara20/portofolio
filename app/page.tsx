@@ -862,7 +862,7 @@ export default function Home() {
                               {project.skills.map((tech, idx) => (
                                 <span
                                   key={idx}
-                                  className="bg-primary text-background text-xs font-medium px-2.5 py-1 rounded-md border border-primary group-hover:border-accent/50 transition-colors"
+                                  className="bg-primary hover:bg-accent text-background text-xs font-medium px-2.5 py-1 rounded-md border border-primary group-hover:border-accent/50 transition-colors"
                                 >
                                   {tech}
                                 </span>
