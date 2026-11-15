@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import AnimatedBackground from "./AnimatedBackground";
 import Reveal from "./Reveal";
 
 interface Project {
@@ -410,7 +409,6 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-transparent text-primary flex flex-col relative isolate overflow-x-hidden">
       {/* Background Animasi Scroll-Triggered Scrollytelling */}
-      <AnimatedBackground />
 
       {/* Navigation (Floating Glass Island Navbar) */}
       <header className="sticky top-3 sm:top-5 z-50 w-full px-4 sm:px-6 pointer-events-none">

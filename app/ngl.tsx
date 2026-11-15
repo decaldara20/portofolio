@@ -4,6 +4,7 @@ import { useEffect, useState, type FormEvent } from "react";
 import Link from "next/link";
 import { getSupabaseClient } from "../lib/supabase";
 import Reveal from "./Reveal"; // Ubah menjadi "../Reveal" jika file ini ada di app/ngl/page.tsx
+import Animated from "./Animated"; // Ubah menjadi "../Animated" jika file ini ada di app/ngl/page.tsx
 
 const PROFILE = {
   nama: "Kunto Rossindu Hidayattullah",
@@ -178,12 +179,11 @@ export default function Ngl() {
       );
     } finally {
       setIsSending(false);
-    };
+    }
   };
 
   return (
     <main className="relative isolate min-h-screen flex flex-col overflow-hidden bg-transparent text-primary">
-      {/* Navigation (Floating Glass Island Navbar) */}
       {/* Navigation (Floating Glass Island Navbar) */}
       <header className="sticky top-3 sm:top-5 z-50 w-full px-4 sm:px-6 pointer-events-none">
         <nav
@@ -249,10 +249,20 @@ export default function Ngl() {
       <section className="relative z-10 mx-auto grid w-full max-w-6xl flex-1 items-center gap-8 px-4 py-10 sm:px-6 sm:py-16 lg:grid-cols-12 lg:gap-12 lg:py-20">
         {/* Kolom Kiri: Informasi & Jaminan Privasi */}
         <Reveal className="lg:col-span-6 text-left">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-primary/15 text-primary text-[11px] sm:text-xs font-bold uppercase tracking-wider mb-5 shadow-xs">
-            <span className="w-2 h-2 rounded-full bg-accent animate-pulse shrink-0" />
-            <span className="truncate">Secret &amp; Direct Message Box</span>
+          {/* Pembungkus agar lebar kucing & badge sejajar presisi */}
+          <div className="inline-flex flex-col items-center mb-5 max-w-full">
+            {/* Animasi kucing menempel tepat di atas badge */}
+            <div className="relative z-20 -mb-3 pointer-events-none">
+              <Animated />
+            </div>
+
+            {/* Badge Secret & Direct Message Box */}
+            <div className="relative z-10 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-primary/15 text-primary text-[11px] sm:text-xs font-bold uppercase tracking-wider shadow-xs max-w-full">
+              <span className="w-2 h-2 rounded-full bg-accent animate-pulse shrink-0" />
+              <span className="truncate">Secret &amp; Direct Message Box</span>
+            </div>
           </div>
+
 
           <div className="mb-4 sm:mb-6">
             <h1 className="inline-block text-2xl sm:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight text-primary rounded-2xl hover:text-accent transition-colors">
@@ -288,7 +298,8 @@ export default function Ngl() {
 
         {/* Kolom Kanan: Form Interaktif */}
         <Reveal delay={180} className="lg:col-span-6 w-full">
-          <div className="relative">
+
+          <div className="relative z-10">
             <div className="absolute -inset-2 rounded-3xl bg-gradient-to-tr from-primary/15 via-accent/25 to-second/20 blur-xl pointer-events-none" />
 
             {sent ? (
@@ -337,9 +348,6 @@ export default function Ngl() {
                     <h2 className="text-base sm:text-lg font-extrabold text-primary">
                       Kirim Pesan Baru
                     </h2>
-                    <span className="inline-flex items-center gap-1.5 rounded-md bg-primary border border-second/40 px-2.5 py-1 text-[11px] font-mono font-semibold text-second shrink-0">
-                      Private
-                    </span>
                   </div>
 
                   {/* Pilihan Mode Anonim / Bernama */}

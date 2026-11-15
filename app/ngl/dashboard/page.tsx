@@ -3,7 +3,7 @@
 import { useEffect, useState, type FormEvent } from "react";
 import Link from "next/link";
 import { getSupabaseClient } from "../../../lib/supabase"; // Sesuaikan jumlah "../" dengan letak folder lib/supabase Anda
-import AnimatedBackground from "../../AnimatedBackground"; // Sesuaikan jumlah "../" dengan letak AnimatedBackground.tsx Anda
+import AnimatedBackground from "../../Animated"; // Sesuaikan jumlah "../" dengan letak AnimatedBackground.tsx Anda
 
 type SupabaseMessage = {
   id: string;
