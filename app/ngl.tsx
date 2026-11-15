@@ -183,18 +183,18 @@ export default function Ngl() {
   };
 
   return (
-    <main className="relative isolate min-h-screen flex flex-col overflow-hidden bg-transparent text-primary">
+    <main className="relative isolate min-h-screen flex flex-col overflow-x-hidden bg-transparent text-primary">
       {/* Navigation (Floating Glass Island Navbar) */}
       <header className="sticky top-3 sm:top-5 z-50 w-full px-4 sm:px-6 pointer-events-none">
         <nav
           aria-label="Navigasi Utama"
-          className="max-w-6xl mx-auto rounded-2xl sm:rounded-full bg-white/80 hover:bg-transparent backdrop-blur-md hover:backdrop-blur-none border-2 border-primary/10 hover:border-transparent shadow-[0_8px_30px_rgba(16,31,10,0.06)] hover:shadow-none px-4 sm:px-6 py-2.5 sm:py-3 flex items-center justify-between gap-3 pointer-events-auto transition-all duration-300"
+          className="max-w-6xl mx-auto rounded-2xl sm:rounded-full bg-white/85 md:bg-white/80 md:hover:bg-transparent backdrop-blur-md md:hover:backdrop-blur-none border-2 border-primary/10 md:hover:border-transparent shadow-[0_8px_30px_rgba(16,31,10,0.06)] md:hover:shadow-none px-3.5 sm:px-6 py-2.5 sm:py-3 flex items-center justify-between gap-2 sm:gap-3 pointer-events-auto transition-all duration-300"
         >
           {/* Brand Logo & Foto Profil */}
           <Link
             href="/"
             aria-label="Kembali ke beranda"
-            className="flex items-center gap-2.5 group shrink-0 select-none cursor-pointer"
+            className="flex items-center gap-2 sm:gap-2.5 group shrink-0 select-none cursor-pointer touch-manipulation"
           >
             <div className="w-8 h-8 rounded-xl sm:rounded-full bg-primary text-background flex items-center justify-center overflow-hidden shadow-xs border border-primary/10 group-hover:border-accent transition-all duration-300">
               <img
@@ -218,7 +218,7 @@ export default function Ngl() {
           </Link>
 
           {/* Tombol Aksi di Kanan */}
-          <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
+          <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
             {/* Tombol Bagikan Link (Pill Badge Aksen) */}
             <button
               type="button"
@@ -227,7 +227,7 @@ export default function Ngl() {
               className="cursor-pointer touch-manipulation inline-flex items-center justify-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-accent/15 border border-accent/40 text-xs font-bold text-primary hover:bg-accent hover:border-accent transition-all duration-200 active:scale-95"
             >
               <Icon name={copied ? "check" : "copy"} size={14} />
-              <span className="hidden xs:inline sm:inline">
+              <span className="hidden min-[380px]:inline">
                 {copied ? "Tersalin" : "Bagikan Link"}
               </span>
             </button>
@@ -246,11 +246,11 @@ export default function Ngl() {
       </header>
 
       {/* Konten Utama */}
-      <section className="relative z-10 mx-auto grid w-full max-w-6xl flex-1 items-center gap-8 px-4 py-10 sm:px-6 sm:py-16 lg:grid-cols-12 lg:gap-12 lg:py-20">
+      <section className="relative z-10 mx-auto grid w-full max-w-6xl flex-1 items-center gap-8 px-4 pt-6 pb-12 sm:px-6 sm:py-16 lg:grid-cols-12 lg:gap-12 lg:py-20">
         {/* Kolom Kiri: Informasi & Jaminan Privasi */}
         <Reveal className="lg:col-span-6 text-left">
-          {/* Pembungkus agar lebar kucing & badge sejajar presisi */}
-          <div className="inline-flex flex-col items-center mb-5 max-w-full">
+          {/* Pembungkus agar lebar kucing & badge sejajar presisi di Mobile & Desktop */}
+          <div className="flex sm:inline-flex flex-col items-center mb-5 max-w-full">
             {/* Animasi kucing menempel tepat di atas badge */}
             <div className="relative z-20 -mb-3 pointer-events-none">
               <Animated />
@@ -262,7 +262,6 @@ export default function Ngl() {
               <span className="truncate">Secret &amp; Direct Message Box</span>
             </div>
           </div>
-
 
           <div className="mb-4 sm:mb-6">
             <h1 className="inline-block text-2xl sm:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight text-primary rounded-2xl hover:text-accent transition-colors">
@@ -298,7 +297,6 @@ export default function Ngl() {
 
         {/* Kolom Kanan: Form Interaktif */}
         <Reveal delay={180} className="lg:col-span-6 w-full">
-
           <div className="relative z-10">
             <div className="absolute -inset-2 rounded-3xl bg-gradient-to-tr from-primary/15 via-accent/25 to-second/20 blur-xl pointer-events-none" />
 
@@ -460,7 +458,7 @@ export default function Ngl() {
 
       {/* Footer Rapi dengan Ikon SVG Seragam */}
       <footer className="relative z-10 w-full text-background mt-auto">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8 flex flex-col sm:flex-row items-center justify-between gap-5">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8 flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-5">
           {/* Kiri: Identitas & Hak Cipta */}
           <div className="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
             <div>
@@ -480,7 +478,7 @@ export default function Ngl() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
-              className="w-9 h-9 rounded-xl bg-primary hover:bg-accent text-background hover:text-primary border border-white/15 hover:border-accent flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5"
+              className="touch-manipulation w-10 h-10 sm:w-9 sm:h-9 rounded-xl bg-primary hover:bg-accent text-background hover:text-primary border border-white/15 hover:border-accent flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5 active:scale-95"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                 <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
@@ -494,7 +492,7 @@ export default function Ngl() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
-              className="w-9 h-9 rounded-xl bg-primary hover:bg-accent text-background hover:text-primary border border-white/15 hover:border-accent flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5"
+              className="touch-manipulation w-10 h-10 sm:w-9 sm:h-9 rounded-xl bg-primary hover:bg-accent text-background hover:text-primary border border-white/15 hover:border-accent flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5 active:scale-95"
             >
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                 <path
@@ -510,7 +508,7 @@ export default function Ngl() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
-              className="w-9 h-9 rounded-xl bg-primary hover:bg-accent text-background hover:text-primary border border-white/15 hover:border-accent flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5"
+              className="touch-manipulation w-10 h-10 sm:w-9 sm:h-9 rounded-xl bg-primary hover:bg-accent text-background hover:text-primary border border-white/15 hover:border-accent flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5 active:scale-95"
             >
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
@@ -520,7 +518,7 @@ export default function Ngl() {
             <a
               href={`mailto:${PROFILE.email}`}
               aria-label="Email"
-              className="w-9 h-9 rounded-xl bg-primary hover:bg-accent text-background hover:text-primary border border-white/15 hover:border-accent flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5"
+              className="touch-manipulation w-10 h-10 sm:w-9 sm:h-9 rounded-xl bg-primary hover:bg-accent text-background hover:text-primary border border-white/15 hover:border-accent flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5 active:scale-95"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                 <rect width="20" height="16" x="2" y="4" rx="2" />
