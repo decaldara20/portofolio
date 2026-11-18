@@ -147,6 +147,24 @@ const dokumentasi: DokumentasiItem[] = [
     gambar: "/b.jpeg",
     date: "Februari 2026-Sekarang",
   },
+    {
+    id: 7,
+    deskripsi: "Kunjungan Internal BEM FATISDA x BEM SV UNS",
+    gambar: "/bemsv.JPG",
+    date: "Maret 2026",
+  },
+  {
+    id: 8,
+    deskripsi: "Kunjungan Eksternal BEM FATISDA UNS x HIMAKOM UGM",
+    gambar: "/kunex.JPG",
+    date: "Juni 2026",
+  },
+  {
+    id: 4,
+    deskripsi: "Steering Committee PKKMB FATISDA UNS",
+    gambar: "/pkkmb.jpeg",
+    date: "Mei-Agustus 2026",
+  },
   {
     id: 2,
     deskripsi: "Steering Committee PINGFEST",
@@ -160,34 +178,10 @@ const dokumentasi: DokumentasiItem[] = [
     date: "Februari 2026-Sekarang",
   },
   {
-    id: 4,
-    deskripsi: "Steering Committee PKKMB FATISDA UNS",
-    gambar: "/pkkmb.jpeg",
-    date: "Mei-Agustus 2026",
-  },
-  {
     id: 5,
     deskripsi: "Menteri Bisnis dan Kemitraan BEM FATISDA UNS",
     gambar: "/bem-2025.jpeg",
     date: "Februari-Desember 2025",
-  },
-  {
-    id: 6,
-    deskripsi: "Staff Fundraising PINGFEST",
-    gambar: "/pingfest25.jpg",
-    date: "April-November 2025",
-  },
-  {
-    id: 7,
-    deskripsi: "Kunjungan Internal BEM FATISDA x BEM SV UNS",
-    gambar: "/bemsv.JPG",
-    date: "Maret 2026",
-  },
-  {
-    id: 8,
-    deskripsi: "Kunjungan Eksternal BEM FATISDA UNS x HIMAKOM UGM",
-    gambar: "/kunex.JPG",
-    date: "Juni 2026",
   },
   {
     id: 9,
@@ -236,7 +230,13 @@ const dokumentasi: DokumentasiItem[] = [
     deskripsi: "Kunjungan Eksternal BEM FATISDA UNS x HMIF UII",
     gambar: "/kunex25.jpg",
     date: "November 2025",
-  }
+  },
+    {
+    id: 6,
+    deskripsi: "Staff Fundraising PINGFEST",
+    gambar: "/pingfest25.jpg",
+    date: "April-November 2025",
+  },
 ];
 
 const PROJECTS_DATA: Project[] = [
@@ -963,7 +963,7 @@ export default function Home() {
             </h2>
           </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
             {/* Bento 1: Bio */}
             <Reveal delay={100} className="md:col-span-2 h-full">
               <div className="h-full bg-white/85 backdrop-blur-md p-6 sm:p-8 rounded-2xl border-2 border-primary/10 shadow-sm flex flex-col justify-center">
@@ -989,12 +989,14 @@ export default function Home() {
 
             {/* Bento 2: Profile Photo Card */}
             <Reveal delay={220} className="h-full">
-              <div className="h-full bg-white/85 backdrop-blur-md text-background p-3 rounded-2xl shadow-sm flex flex-col justify-between group border-2 border-primary/10">
-                <div className="relative w-full h-80 md:h-full min-h-[260px] rounded-xl overflow-hidden bg-primary">
+              <div className="h-full bg-white/85 backdrop-blur-md text-background p-3 rounded-2xl shadow-sm flex flex-col group border-2 border-primary/10">
+                {/* Ubah h-80 md:h-full min-h-[260px] menjadi h-80 md:h-auto md:flex-1 md:min-h-0 */}
+                <div className="relative w-full h-80 md:h-auto md:flex-1 md:min-h-0 rounded-xl overflow-hidden bg-primary">
                   <img
                     src="/kunto.jpeg"
                     alt={PROFILE.nama}
-                    className="w-full h-full object-cover object-center group-hover:scale-150 transition-transform duration-500"
+                    /* Tambahkan md:absolute md:inset-0 agar gambar tidak mendorong tinggi card */
+                    className="w-full h-full md:absolute md:inset-0 object-cover object-center group-hover:scale-150 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-transparent to-transparent" />
                   <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between gap-2">
